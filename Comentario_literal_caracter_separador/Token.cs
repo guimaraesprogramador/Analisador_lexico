@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Comentario_literal_caracter_separador
+{
+    public class Token:Comentario_fonte
+    {
+        public static string[] comentarios
+        {
+            get
+            {
+                string[] arrays = new string[18];
+                arrays[0] = "/**/";
+                arrays[1] = "///";
+                arrays[2] = "<summary>";
+                arrays[3] = "<c>";
+                arrays[4] = "<code>";
+                arrays[5] = "<example>";
+                arrays[6] = "<exception>";
+                arrays[7] = "<include>";
+                arrays[8] = "<para>";
+                arrays[9] = "<paramref>";
+                arrays[10] = "permission";
+                arrays[11] = "<remarks>";
+                arrays[12] = "<returns>";
+                arrays[13] = "<see>";
+                arrays[14] = "<seealso>";
+                arrays[15] = "<typeparam>";
+                arrays[16] = "<typeparamref>";
+                arrays[17] = "<value>";
+                return arrays;
+            }
+            set
+            {
+                comentarios = value;
+            }
+
+        }
+        // busca somente comentario;
+        public static string buscae_token(string retorno)
+        {
+            token = 0;
+            string lista = "";
+            for (int i = 0; i < comentarios.Length; i++)
+            {
+                if (comentarios[i] == retorno)
+                {
+                    token = token + i;
+                    Identificador.comentario_identifador(i);
+                    lista = comentarios[i];
+                    break;
+                }
+            }
+            if (token == 0)
+            {
+                lista = texto;
+            }
+            return lista;
+        }
+    }
+}
