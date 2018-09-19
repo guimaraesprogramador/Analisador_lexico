@@ -15,10 +15,12 @@ namespace Comentario_literal_caracter_separador
             switch (i)
             {
                 case 0:
-                    identicado = string.Format("Definir texto em {0} uma fonte de código", Environment.NewLine);
+                    identicado = "Definir texto em  uma fonte de código";
                     break;
+               
             }
-            if(i == -1)
+    
+            if(i ==-1)
             {
                 identicado = "Novo tipo de identificador";
             }

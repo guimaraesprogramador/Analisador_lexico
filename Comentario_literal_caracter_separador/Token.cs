@@ -12,8 +12,8 @@ namespace Comentario_literal_caracter_separador
         {
             get
             {
-                string[] arrays = new string[18];
-                arrays[0] = "/**/";
+                string[] arrays = new string[20];
+                arrays[0] = "/**";
                 arrays[1] = "///";
                 arrays[2] = "<summary>";
                 arrays[3] = "<c>";
@@ -31,6 +31,8 @@ namespace Comentario_literal_caracter_separador
                 arrays[15] = "<typeparam>";
                 arrays[16] = "<typeparamref>";
                 arrays[17] = "<value>";
+                arrays[18] = "<list>";
+                arrays[19] = "<para>";
                 return arrays;
             }
             set
@@ -42,21 +44,24 @@ namespace Comentario_literal_caracter_separador
         // busca somente comentario;
         public static string buscae_token(string retorno)
         {
-            token = 0;
+           
             string lista = "";
             for (int i = 0; i < comentarios.Length; i++)
             {
                 if (comentarios[i] == retorno)
                 {
-                    token = token + i;
-                    Identificador.comentario_identifador(i);
-                    lista = comentarios[i];
-                    break;
+
+                        token = i;
+                        lista = comentarios[i];
+                        break;
                 }
+
             }
-            if (token == 0)
+           
+            if (lista.Equals(""))
             {
                 lista = texto;
+                token = -1;
             }
             return lista;
         }
