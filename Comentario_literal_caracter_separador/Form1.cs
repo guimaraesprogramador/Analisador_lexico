@@ -28,7 +28,7 @@ namespace Comentario_literal_caracter_separador
             
             if (fonte.main().Equals("erro"))
             {
-                listBox3.Items.Add("erro");
+                listBox3.Items.Add("erro de lexico");
             }
             else
             {
@@ -37,7 +37,7 @@ namespace Comentario_literal_caracter_separador
             }
             if (Identificador.retorno.Equals("erro"))
             {
-                listBox3.Items.Add("erro");
+                listBox3.Items.Add("erro de identicador");
             }
             else listBox2.Items.Add(Identificador.comentario_identifador(Token.comentarios.Length));
             textBox1.Clear();

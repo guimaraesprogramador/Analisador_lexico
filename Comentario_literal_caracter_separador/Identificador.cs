@@ -19,11 +19,6 @@ namespace Comentario_literal_caracter_separador
                     break;
                
             }
-    
-            if(i ==-1)
-            {
-                identicado = "Novo tipo de identificador";
-            }
             return identicado;
         }
     }
