@@ -60,9 +60,9 @@ namespace Comentario_literal_caracter_separador
            
             if (lista.Equals(""))
             {
-                lista = texto;
-                token = -1;
+                lista = "erro";
             }
+           
             return lista;
         }
     }
