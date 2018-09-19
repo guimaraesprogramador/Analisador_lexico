@@ -50,17 +50,16 @@ namespace Comentario_literal_caracter_separador
             {
                 if (comentarios[i] == retorno)
                 {
-
                         token = i;
                         lista = comentarios[i];
                         break;
                 }
 
             }
-           
             if (lista.Equals(""))
             {
                 lista = "erro";
+                token = -1;
             }
            
             return lista;

@@ -35,11 +35,12 @@ namespace Comentario_literal_caracter_separador
                 listBox1.Items.Add(fonte.main());
                 textBox2.Text = Convert.ToString(Comentario_fonte.token);
             }
-            if (Identificador.retorno.Equals("erro"))
+           
+            if (Identificador.comentario_identifador(Token.token).Equals("erro"))
             {
                 listBox3.Items.Add("erro de identicador");
             }
-            else listBox2.Items.Add(Identificador.comentario_identifador(Token.comentarios.Length));
+            else listBox2.Items.Add(Identificador.comentario_identifador(Token.token));
             textBox1.Clear();
 
         }
