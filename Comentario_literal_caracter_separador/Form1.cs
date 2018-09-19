@@ -40,6 +40,7 @@ namespace Comentario_literal_caracter_separador
                 listBox3.Items.Add("erro");
             }
             else listBox2.Items.Add(Identificador.comentario_identifador(Token.comentarios.Length));
+            textBox1.Clear();
 
         }
     }
