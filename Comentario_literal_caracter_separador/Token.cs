@@ -23,7 +23,7 @@ namespace Comentario_literal_caracter_separador
                 arrays[7] = "<include>";
                 arrays[8] = "<para>";
                 arrays[9] = "<paramref>";
-                arrays[10] = "permission";
+                arrays[10] = "<permission>";
                 arrays[11] = "<remarks>";
                 arrays[12] = "<returns>";
                 arrays[13] = "<see>";
@@ -32,7 +32,7 @@ namespace Comentario_literal_caracter_separador
                 arrays[16] = "<typeparamref>";
                 arrays[17] = "<value>";
                 arrays[18] = "<list>";
-                arrays[19] = "<para>";
+                arrays[19] = "<param>";
                 return arrays;
             }
             set
