@@ -25,22 +25,21 @@ namespace Comentario_literal_caracter_separador
         private void analisar_Click(object sender, EventArgs e)
         {
             Comentario_fonte.texto = textBox1.Text;
-            
-            if (fonte.main().Equals("erro"))
+            switch (fonte.main())
             {
-                listBox3.Items.Add("erro de lexico");
+                case "erro":
+                    listBox3.Items.Add("erro de lexico");
+                    break;
+                case "erro identificado":
+                    listBox3.Items.Add("erro de identicador");
+                    break;
+               
+                default:
+                    listBox1.Items.Add(fonte.main());
+                    textBox2.Text = Convert.ToString(Comentario_fonte.token);
+                    listBox2.Items.Add(Identificador.comentario_identifador(Token.token));
+                    break;
             }
-            else
-            {
-                listBox1.Items.Add(fonte.main());
-                textBox2.Text = Convert.ToString(Comentario_fonte.token);
-            }
-           
-            if (Identificador.comentario_identifador(Token.token).Equals("erro"))
-            {
-                listBox3.Items.Add("erro de identicador");
-            }
-            else listBox2.Items.Add(Identificador.comentario_identifador(Token.token));
             textBox1.Clear();
 
         }

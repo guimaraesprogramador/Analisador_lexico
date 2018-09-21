@@ -12,7 +12,7 @@ namespace Comentario_literal_caracter_separador
         public static string texto { get; set; }
         public static int token { get; set; }
         public static string retorno = "";
-        // como descuber qual token
+        // como descuber qual lexico
         public string main()
         {
             int simple = texto.IndexOf("///");

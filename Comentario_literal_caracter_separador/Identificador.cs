@@ -54,7 +54,7 @@ namespace Comentario_literal_caracter_separador
                 }
 
             }
-            if (lista2.Equals(""))
+            if (lista2 == null)
             {
                 lista2 = "erro";
             }

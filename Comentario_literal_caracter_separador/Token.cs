@@ -56,12 +56,11 @@ namespace Comentario_literal_caracter_separador
                 }
 
             }
-            if (lista.Equals(""))
+            if(lista.Equals(""))
             {
-                lista = "erro";
+                lista = "erro identificado";
                 token = -1;
             }
-           
             return lista;
         }
     }
