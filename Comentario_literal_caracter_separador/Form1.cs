@@ -28,12 +28,13 @@ namespace Comentario_literal_caracter_separador
             switch (fonte.main())
             {
                 case "erro":
-                    listBox3.Items.Add("erro de lexico");
-                    break;
-                case "erro identificado":
                     listBox3.Items.Add("erro de identicador");
                     break;
-               
+                case "erro lexico":
+                    listBox3.Items.Add("erro lexico");
+                    break;
+                case "erro lexico e identicador":
+                    break;
                 default:
                     listBox1.Items.Add(fonte.main());
                     textBox2.Text = Convert.ToString(Comentario_fonte.token);

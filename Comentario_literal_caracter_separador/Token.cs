@@ -58,7 +58,7 @@ namespace Comentario_literal_caracter_separador
             }
             if(lista.Equals(""))
             {
-                lista = "erro identificado";
+                lista = "erro lexico";
                 token = -1;
             }
             return lista;

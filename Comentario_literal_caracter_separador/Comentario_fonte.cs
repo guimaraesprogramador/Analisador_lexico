@@ -18,7 +18,7 @@ namespace Comentario_literal_caracter_separador
             int simple = texto.IndexOf("///");
             int composto = texto.LastIndexOf("*/");
             
-           
+
             // literal caracter + separador
             if(composto== -1 && simple ==-1)
             {
@@ -31,13 +31,18 @@ namespace Comentario_literal_caracter_separador
               if (composto >= 0)
              {
                     string comentario_composto = texto.Remove(composto);
-                    retorno = comentario_composto.Replace( Token.comentarios[0],"");
-                
+                    string remover_caracter = comentario_composto.Replace( Token.comentarios[0],"");
+                    int barra =  remover_caracter.IndexOf(">") + 1;
+                    string separar = remover_caracter.Substring(barra);
+                    retorno = remover_caracter.Replace(separar, "");
                 }
              if (simple >= 0)
              {
                  string comentario_simple = texto.Substring(simple);
-                 retorno = comentario_simple.Replace(Token.comentarios[1], "");
+                string remover_caracter_simple = comentario_simple.Replace(Token.comentarios[1], "");
+                    int barra_simple = remover_caracter_simple.IndexOf(">") + 1;
+                    string separar_simple = remover_caracter_simple.Substring(barra_simple);
+                    retorno = remover_caracter_simple.Replace(separar_simple, "");
              }
                 return Token.buscae_token(retorno);
             }
