@@ -22,7 +22,21 @@ namespace Comentario_literal_caracter_separador
             // literal caracter + separador
             if(composto== -1 && simple ==-1)
             {
-                retorno = "erro";
+                //erro de identificado
+                string erros_texto = texto;
+                int erro = texto.IndexOf(">") + 1;
+                if (erro < erros_texto.Length)
+                {//erro com alguma palavra na frente
+                    string separar = erros_texto.Substring(erro);
+                    retorno = erros_texto.Replace(separar, "");
+
+                }
+                else
+                {
+                    // erro sem palavra na frente
+                    retorno = erros_texto;
+
+                }
                 return retorno;
             }
             //somente comentario;
@@ -33,18 +47,37 @@ namespace Comentario_literal_caracter_separador
                     string comentario_composto = texto.Remove(composto);
                     string remover_caracter = comentario_composto.Replace( Token.comentarios[0],"");
                     int barra =  remover_caracter.IndexOf(">") + 1;
-                    string separar = remover_caracter.Substring(barra);
-                    retorno = remover_caracter.Replace(separar, "");
+                    if(barra < remover_caracter.Length)
+                    {
+                        string separar = remover_caracter.Substring(barra);
+                        retorno = remover_caracter.Replace(separar, "");
+                    }
+                    else
+                    {
+                        retorno = remover_caracter;
+                    }
+                  
                 }
-             if (simple >= 0)
+             if (simple == 0)
              {
                  string comentario_simple = texto.Substring(simple);
                 string remover_caracter_simple = comentario_simple.Replace(Token.comentarios[1], "");
                     int barra_simple = remover_caracter_simple.IndexOf(">") + 1;
-                    string separar_simple = remover_caracter_simple.Substring(barra_simple);
-                    retorno = remover_caracter_simple.Replace(separar_simple, "");
+                    if(barra_simple <remover_caracter_simple.Length)
+                    {
+                        string separar_simple = remover_caracter_simple.Substring(barra_simple);
+                        retorno = remover_caracter_simple.Replace(separar_simple, "");
+                    }
+                    else
+                    {
+                        retorno = remover_caracter_simple;
+                    }
+                    
              }
-                return Token.buscae_token(retorno);
+             //erro lexico
+             string resposta_do_processo = Token.buscar_token(retorno);
+                if (resposta_do_processo.Equals("erro lexico")) return resposta_do_processo;
+                return resposta_do_processo;
             }
             
         }

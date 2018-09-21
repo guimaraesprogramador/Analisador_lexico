@@ -42,7 +42,7 @@ namespace Comentario_literal_caracter_separador
 
         }
         // busca somente comentario;
-        public static string buscae_token(string retorno)
+        public static string buscar_token(string retorno)
         {
            
             string lista = "";
@@ -62,6 +62,16 @@ namespace Comentario_literal_caracter_separador
                 token = -1;
             }
             return lista;
+        }
+        public static int contar_caracter(int numero)
+        {
+            int soma = 0;
+            for(int o = 0; o < numero; o++)
+            {
+                soma += o;
+                o++;
+            }
+            return soma;
         }
     }
 }
