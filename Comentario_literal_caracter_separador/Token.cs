@@ -12,7 +12,7 @@ namespace Comentario_literal_caracter_separador
         {
             get
             {
-                string[] arrays = new string[20];
+                string[] arrays = new string[22];
                 arrays[0] = "/**";
                 arrays[1] = "///";
                 arrays[2] = "<summary>";
@@ -33,6 +33,8 @@ namespace Comentario_literal_caracter_separador
                 arrays[17] = "<value>";
                 arrays[18] = "<list>";
                 arrays[19] = "<param>";
+                arrays[20] = "//";
+                arrays[21] = "/*";
                 return arrays;
             }
             set

@@ -16,11 +16,11 @@ namespace Comentario_literal_caracter_separador
         public string main()
         {
             int simple = texto.IndexOf("///");
-            int composto = texto.LastIndexOf("*/");
-            
-
+            int composto = texto.IndexOf("/**");
+            int barra_dupla = texto.IndexOf("//");
+            int barra_final = texto.IndexOf("/*");
             // literal caracter + separador
-            if(composto== -1 && simple ==-1)
+            if(composto == -1 && simple ==-1 && barra_dupla == -1 && barra_final ==-1)
             {
                 //erro de identificado
                 string erros_texto = texto;
@@ -74,8 +74,40 @@ namespace Comentario_literal_caracter_separador
                     }
                     
              }
-             //erro lexico
-             string resposta_do_processo = Token.buscar_token(retorno);
+             if(barra_dupla> 0)
+                {
+                    string simple_barra = texto.Substring(barra_dupla);
+                    string remover_caractet_simples_dupla = simple_barra.Replace(Token.comentarios[20], "");
+                    int barra_simple_dupla = remover_caractet_simples_dupla.IndexOf(">") + 1;
+                    if(barra_simple_dupla < remover_caractet_simples_dupla.Length)
+                    {
+                        string separar_simple_dupla = remover_caractet_simples_dupla.Substring(barra_simple_dupla);
+                        retorno = remover_caractet_simples_dupla.Replace(separar_simple_dupla, "");
+                    }
+                    else
+                    {
+                        retorno = remover_caractet_simples_dupla;
+                    }
+                   
+                }
+
+                if (barra_final == 0)
+                {
+                    string simple_barra_final = texto.Substring(barra_final);
+                    string remover_caracter_simple_final = simple_barra_final.Replace(Token.comentarios[21], "");
+                    int barra_simple_dupla_final = remover_caracter_simple_final.IndexOf(">") + 1;
+                    if (barra_simple_dupla_final < remover_caracter_simple_final.Length)
+                    {
+                        string separar_simple_dupla_final = remover_caracter_simple_final.Substring(barra_simple_dupla_final);
+                        retorno = remover_caracter_simple_final.Replace(separar_simple_dupla_final, "");
+                    }
+                    else
+                    {
+                        retorno = remover_caracter_simple_final;
+                    }
+                }
+                //erro lexico
+                string resposta_do_processo = Token.buscar_token(retorno);
                 if (resposta_do_processo.Equals("erro lexico")) return resposta_do_processo;
                 return resposta_do_processo;
             }
