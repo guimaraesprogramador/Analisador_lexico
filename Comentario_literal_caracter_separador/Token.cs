@@ -65,15 +65,5 @@ namespace Comentario_literal_caracter_separador
             }
             return lista;
         }
-        public static int contar_caracter(int numero)
-        {
-            int soma = 0;
-            for(int o = 0; o < numero; o++)
-            {
-                soma += o;
-                o++;
-            }
-            return soma;
-        }
     }
 }

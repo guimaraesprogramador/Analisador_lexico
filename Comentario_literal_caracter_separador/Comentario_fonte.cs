@@ -78,20 +78,12 @@ namespace Comentario_literal_caracter_separador
                 {
                     string simple_barra = texto.Substring(barra_dupla);
                     string remover_caractet_simples_dupla = simple_barra.Replace(Token.comentarios[20], "");
-                    int barra_simple_dupla = remover_caractet_simples_dupla.IndexOf(">") + 1;
-                    if(barra_simple_dupla < remover_caractet_simples_dupla.Length)
-                    {
-                        string separar_simple_dupla = remover_caractet_simples_dupla.Substring(barra_simple_dupla);
-                        retorno = remover_caractet_simples_dupla.Replace(separar_simple_dupla, "");
-                    }
-                    else
-                    {
-                        retorno = remover_caractet_simples_dupla;
-                    }
-                   
+                    string barra_simple_dupla = Index.indice(texto,Token.comentarios[20]);
+                    if (barra_simple_dupla != "erro") retorno = Token.comentarios[20].ToString() + " " + " na linha " + barra_simple_dupla;
+                    else retorno = "erro lexico";
                 }
 
-                if (barra_final == 0)
+                if (barra_final >= 0)
                 {
                     string simple_barra_final = texto.Substring(barra_final);
                     string remover_caracter_simple_final = simple_barra_final.Replace(Token.comentarios[21], "");
@@ -107,9 +99,8 @@ namespace Comentario_literal_caracter_separador
                     }
                 }
                 //erro lexico
-                string resposta_do_processo = Token.buscar_token(retorno);
-                if (resposta_do_processo.Equals("erro lexico")) return resposta_do_processo;
-                return resposta_do_processo;
+
+                return retorno;
             }
             
         }
