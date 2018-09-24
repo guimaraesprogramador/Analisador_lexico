@@ -79,7 +79,7 @@ namespace Comentario_literal_caracter_separador
                     string simple_barra = texto.Substring(barra_dupla);
                     string remover_caractet_simples_dupla = simple_barra.Replace(Token.comentarios[20], "");
                     string barra_simple_dupla = Index.indice(texto,Token.comentarios[20]);
-                    if (barra_simple_dupla != "erro") retorno = Token.comentarios[20].ToString() + " " + " na linha " + barra_simple_dupla;
+                    if (barra_simple_dupla != "erro") retorno = Token.comentarios[20].ToString() + " " + " na posicao " + barra_simple_dupla;
                     else retorno = "erro lexico";
                 }
 

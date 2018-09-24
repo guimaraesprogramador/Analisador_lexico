@@ -13,8 +13,12 @@ namespace Comentario_literal_caracter_separador
             Regex buscador = new Regex(texto);
             var math = buscador.Match(indicado);
             string a = "";
-            if(math.Success)a =  math.Index.ToString();
-            else a = "erro";
+            while (math.Success)
+            {
+                a = math.Index.ToString();
+               math =  math.NextMatch();
+            }
+            
             return a;
         }
     }

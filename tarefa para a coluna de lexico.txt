@@ -1,1 +1,4 @@
 trazer na tabela lexico somente os valores do caracter e a linha que esta estabelecida.
+
+exemple:'a'//kevin
+'a'//kevin//kevin
