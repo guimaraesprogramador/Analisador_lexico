@@ -44,7 +44,7 @@ namespace Comentario_literal_caracter_separador
                     break;
             }
             textBox1.Clear();
-
+            
         }
     }
 }

@@ -8,17 +8,33 @@ namespace Comentario_literal_caracter_separador
 {
    public class Index:Comentario_fonte
     {
-       public static string indice(string indicado, string texto)
+       public static string indice(string texto, string indicado)
         {
-            Regex buscador = new Regex(texto);
-            var math = buscador.Match(indicado);
             string a = "";
-            while (math.Success)
+            switch (texto)
             {
-                a = math.Index.ToString();
-               math =  math.NextMatch();
+                case "/**":
+                    a = "erro";
+                    break;
+                case "*/":
+                    a = "erro";
+                    break;
+                default:
+                    Regex buscador2 = new Regex(indicado);
+                    var math2 = buscador2.Match(texto);
+                    
+                    if (math2.Success == false) a = "erro";
+                    else
+                    {
+                        while (math2.Success)
+                        {
+                            a = math2.Index.ToString();
+                            math2 = math2.NextMatch();
+                        }
+                    }
+                   
+                    break;
             }
-            
             return a;
         }
     }
