@@ -27,20 +27,17 @@ namespace Comentario_literal_caracter_separador
                 return retorno;
             }
             //somente comentario;
-           
-
                 /***/
+                //erro não esta funcionado
               if (composto >= 0)
              {
-                    /*string comentario_composto = texto.Remove(composto);
-                    string remover_caracter = comentario_composto.Replace( Token.comentarios[0],"");*/
-                    string[] barra = Index.indice(texto,Token.comentarios[2]);
+                    string[] barra = Index.indice(texto,"/**");
                     if (barra.ToString() != "erro") retorno = Token.comentarios[2] + " " + "na posicao " + barra[0];
                     else retorno = "erro lexico";
                 return retorno;
             }
               ///
-             if (simple == 0)
+             if (simple >= 0)
              { 
                /*  string comentario_simple = texto.Substring(simple);
                 string remover_caracter_simple = comentario_simple.Replace(Token.comentarios[1], "");*/
@@ -51,7 +48,7 @@ namespace Comentario_literal_caracter_separador
                 }
              //
              //testado
-             if(barra_dupla == 0)
+             if(barra_dupla >= 0)
                 {
                    /* string simple_barra = texto.Substring(barra_dupla);
                     string remover_caractet_simples_dupla = simple_barra.Replace(Token.comentarios[2], "");*/
@@ -62,7 +59,7 @@ namespace Comentario_literal_caracter_separador
             }
              
              /**/
-             //não testado
+             //testado
                 if (barra_final >= 0)
                 {
                     string simple_barra_final = texto.Substring(barra_final);
