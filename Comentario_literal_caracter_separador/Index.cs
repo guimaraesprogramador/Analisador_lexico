@@ -6,34 +6,26 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 namespace Comentario_literal_caracter_separador
 {
-   public class Index:Comentario_fonte
+   public class Index
     {
-       public static string indice(string texto, string indicado)
+       public static string[] indice(string texto, string lexico)
         {
-            string a = "";
-            switch (texto)
+            string[] a = new string[2];
+            string[] erro =  { "erro" };
+                    Regex buscador2 = new Regex(lexico);
+            var math2 = buscador2.Match(texto);
+
+            if (math2.Success == false) return a = erro;
+            else
             {
-                case "/**":
-                    a = "erro";
-                    break;
-                case "*/":
-                    a = "erro";
-                    break;
-                default:
-                    Regex buscador2 = new Regex(indicado);
-                    var math2 = buscador2.Match(texto);
-                    
-                    if (math2.Success == false) a = "erro";
-                    else
-                    {
-                        while (math2.Success)
-                        {
-                            a = math2.Index.ToString();
-                            math2 = math2.NextMatch();
-                        }
-                    }
+                while (math2.Success)
+                {
+                    a[0] = math2.Index.ToString();
+                    math2 = math2.NextMatch();
+                }
+
                    
-                    break;
+                
             }
             return a;
         }

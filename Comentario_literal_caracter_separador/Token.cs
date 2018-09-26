@@ -12,29 +12,11 @@ namespace Comentario_literal_caracter_separador
         {
             get
             {
-                string[] arrays = new string[22];
-                arrays[0] = "/**";
-                arrays[1] = "///";
-                arrays[2] = "<summary>";
-                arrays[3] = "<c>";
-                arrays[4] = "<code>";
-                arrays[5] = "<example>";
-                arrays[6] = "<exception>";
-                arrays[7] = "<include>";
-                arrays[8] = "<para>";
-                arrays[9] = "<paramref>";
-                arrays[10] = "<permission>";
-                arrays[11] = "<remarks>";
-                arrays[12] = "<returns>";
-                arrays[13] = "<see>";
-                arrays[14] = "<seealso>";
-                arrays[15] = "<typeparam>";
-                arrays[16] = "<typeparamref>";
-                arrays[17] = "<value>";
-                arrays[18] = "<list>";
-                arrays[19] = "<param>";
-                arrays[20] = "//";
-                arrays[21] = "/*";
+                string[] arrays = new string[4];
+                arrays[0] = "//";
+                arrays[1] = "/* */";
+                arrays[2] = "/**";
+                arrays[3] = "///";
                 return arrays;
             }
             set
@@ -48,7 +30,7 @@ namespace Comentario_literal_caracter_separador
         {
            
             string lista = "";
-            for (int i = 0; i < comentarios.Length; i++)
+           /* for (int i = 0; i < comentarios.Length; i++)
             {
                 if (comentarios[i] == retorno)
                 {
@@ -62,7 +44,7 @@ namespace Comentario_literal_caracter_separador
             {
                 lista = "erro lexico";
                 token = -1;
-            }
+            }*/
             return lista;
         }
     }

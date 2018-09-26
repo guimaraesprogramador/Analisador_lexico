@@ -23,74 +23,56 @@ namespace Comentario_literal_caracter_separador
             // literal caracter + separador
             if(composto == -1 && simple ==-1 && barra_dupla == -1 && barra_final ==-1)
             {
-                //erro de identificado
-                string erros_texto = texto;
-                int erro = texto.IndexOf(">") + 1;
-                if (erro < erros_texto.Length)
-                {//erro com alguma palavra na frente
-                    string separar = erros_texto.Substring(erro);
-                    retorno = erros_texto.Replace(separar, "");
-
-                }
-                else
-                {
-                    // erro sem palavra na frente
-                    retorno = erros_texto;
-
-                }
+                retorno = "erro lexico";
                 return retorno;
             }
             //somente comentario;
-            else
-            {
+           
+
                 /***/
               if (composto >= 0)
              {
-                    string comentario_composto = texto.Remove(composto);
-                    string remover_caracter = comentario_composto.Replace( Token.comentarios[0],"");
-                    string barra = Index.indice(remover_caracter, Token.comentarios[0]);
-                    if (barra != "erro") retorno = Token.comentarios[0] + " " + "na posicao " + barra;
+                    /*string comentario_composto = texto.Remove(composto);
+                    string remover_caracter = comentario_composto.Replace( Token.comentarios[0],"");*/
+                    string[] barra = Index.indice(texto,Token.comentarios[2]);
+                    if (barra.ToString() != "erro") retorno = Token.comentarios[2] + " " + "na posicao " + barra[0];
                     else retorno = "erro lexico";
-                }
-              ///
-             if (simple == 0)
-             {
-                 string comentario_simple = texto.Substring(simple);
-                string remover_caracter_simple = comentario_simple.Replace(Token.comentarios[1], "");
-                    string barra_simple = Index.indice(texto, Token.comentarios[1]);
-                    if (barra_simple != "erro") retorno = Token.comentarios[1] + " " + "na posicao " + barra_simple;
-                    else retorno = "erro lexico";
-                }
-             //
-             if(barra_dupla >= 0)
-                {
-                    string simple_barra = texto.Substring(barra_dupla);
-                    string remover_caractet_simples_dupla = simple_barra.Replace(Token.comentarios[20], "");
-                    string barra_simple_dupla = Index.indice(texto,Token.comentarios[20]);
-                    if (barra_simple_dupla != "erro") retorno = Token.comentarios[20].ToString() + " " + " na posicao " + barra_simple_dupla;
-                    else retorno = "erro lexico";
-                }
-             /**/
-             //não testado
-                if (barra_final == 0)
-                {
-                    string simple_barra_final = texto.Substring(barra_final);
-                    string remover_caracter_simple_final = simple_barra_final.Replace(Token.comentarios[21], "");
-                    int barra_simple_dupla_final = remover_caracter_simple_final.IndexOf(">") + 1;
-                    if (barra_simple_dupla_final < remover_caracter_simple_final.Length)
-                    {
-                        string separar_simple_dupla_final = remover_caracter_simple_final.Substring(barra_simple_dupla_final);
-                        retorno = remover_caracter_simple_final.Replace(separar_simple_dupla_final, "");
-                    }
-                    else
-                    {
-                        retorno = remover_caracter_simple_final;
-                    }
-                }
-                //erro lexico
-
                 return retorno;
             }
+              ///
+             if (simple == 0)
+             { 
+               /*  string comentario_simple = texto.Substring(simple);
+                string remover_caracter_simple = comentario_simple.Replace(Token.comentarios[1], "");*/
+                    string[] barra_simple = Index.indice(texto, Token.comentarios[3]);
+                    if (barra_simple[0] != "erro") retorno = Token.comentarios[3] + " " + "na posicao " +barra_simple[0] + "linha"+barra_simple[1];
+                    else retorno = "erro lexico";
+                return retorno;
+                }
+             //
+             //testado
+             if(barra_dupla == 0)
+                {
+                   /* string simple_barra = texto.Substring(barra_dupla);
+                    string remover_caractet_simples_dupla = simple_barra.Replace(Token.comentarios[2], "");*/
+                    string[] barra_simple_dupla = Index.indice(texto,"//");
+                    if (barra_simple_dupla[0]!= "erro") retorno = Token.comentarios[0].ToString() + " " + " na posicao " + barra_simple_dupla[0]+ " linha "+barra_simple_dupla[1];
+                    else retorno = "erro lexico";
+                return retorno;
+            }
+             
+             /**/
+             //não testado
+                if (barra_final >= 0)
+                {
+                    string simple_barra_final = texto.Substring(barra_final);
+                    string remover_caracter_simple_final = simple_barra_final.Replace(Token.comentarios[1], "");
+                    string[] barra_simple_dupla_final = Index.indice(texto, Token.comentarios[1].ToString());
+                    if(barra_simple_dupla_final[0] != "erro")retorno = Token.comentarios[1].ToString() + " " + " na posicao " + barra_simple_dupla_final[0] + " linha " + barra_simple_dupla_final[1];
+                    else retorno = "erro lexico";
+                return retorno;
+            }
+            return null;   
             
         }
     }
