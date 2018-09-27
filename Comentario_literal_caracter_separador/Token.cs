@@ -12,11 +12,12 @@ namespace Comentario_literal_caracter_separador
         {
             get
             {
-                string[] arrays = new string[4];
+                string[] arrays = new string[5];
                 arrays[0] = "//";
                 arrays[1] = "/*";
                 arrays[2] = "/**";
                 arrays[3] = "///";
+                arrays[4] = "\n";
                 return arrays;
             }
             set

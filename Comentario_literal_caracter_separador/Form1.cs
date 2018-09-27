@@ -25,24 +25,33 @@ namespace Comentario_literal_caracter_separador
         private void analisar_Click(object sender, EventArgs e)
         {
             Comentario_fonte.texto = textBox1.Text;
-            string resposta = fonte.main();
-            switch (resposta)
+            string[] resposta = fonte.main();
+            for(int o = 0; o < resposta.Length; o++)
             {
-                case "erro de identicador":
-                    listBox3.Items.Add("erro de identicador");
-                    break;
-                case "erro lexico":
-                    listBox3.Items.Add("erro lexico");
-                    break;
-                case "erro lexico e identicador":
-                    listBox3.Items.Add("erro lexico e identicador");
-                    break;
-                default:
-                    listBox1.Items.Add(resposta);
-               //     textBox2.Text = Convert.ToString(Comentario_fonte.token);
-                   // listBox2.Items.Add(Identificador.comentario_identifador(Token.token));
-                    break;
+                
+                switch (resposta[o])
+                {
+                    case "erro de identicador":
+                        listBox3.Items.Add("erro de identicador");
+                        break;
+                    case "erro lexico":
+                        listBox3.Items.Add("erro lexico");
+                        break;
+                    case "erro lexico e identicador":
+                        listBox3.Items.Add("erro lexico e identicador");
+                        break;
+                    default:
+                        if (resposta[o] != null)
+                        {
+                            listBox1.Items.Add(resposta[o].ToString());
+                            //     textBox2.Text = Convert.ToString(Comentario_fonte.token);
+                            // listBox2.Items.Add(Identificador.comentario_identifador(Token.token));
+                        }
+
+                        break;
+                }
             }
+
             textBox1.Clear();
             
         }
