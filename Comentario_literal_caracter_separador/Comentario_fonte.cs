@@ -42,7 +42,7 @@ namespace Comentario_literal_caracter_separador
                /*  string comentario_simple = texto.Substring(simple);
                 string remover_caracter_simple = comentario_simple.Replace(Token.comentarios[1], "");*/
                     string[] barra_simple = Index.indice(texto, Token.comentarios[3]);
-                    if (barra_simple[0] != "erro") retorno = Token.comentarios[3] + " " + "na posicao " +barra_simple[0] + "linha"+barra_simple[1];
+                    if (barra_simple[0] != "erro") retorno = Token.comentarios[3] + " " + "na posicao " +barra_simple[0] + "linha "+barra_simple[1];
                     else retorno = "erro lexico";
                 return retorno;
                 }

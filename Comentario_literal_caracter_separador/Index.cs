@@ -23,9 +23,25 @@ namespace Comentario_literal_caracter_separador
                     a[0] = math2.Index.ToString();
                     math2 = math2.NextMatch();
                 }
+               
+                int linha = 1;
+                /* for (int i = 0; i < split.Length; i++)
+                 {
+                     string valor = split[i] != "\n" ? split[i].Trim() : split[i];
+                     if(valor == "\n")
+                     {
+                         linha++;
+                         continue;
+                     }
+                     else if(valor =="")
+                     {
+                         continue;
+                     }
+                     if(valor[0] =="//")
 
-                   
-                
+
+                 }*/
+                 
             }
             return a;
         }
