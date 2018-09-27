@@ -14,7 +14,7 @@ namespace Comentario_literal_caracter_separador
             {
                 string[] arrays = new string[4];
                 arrays[0] = "//";
-                arrays[1] = "/* */";
+                arrays[1] = "/*";
                 arrays[2] = "/**";
                 arrays[3] = "///";
                 return arrays;
