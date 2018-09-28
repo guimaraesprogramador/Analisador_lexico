@@ -56,10 +56,10 @@ namespace Comentario_literal_caracter_separador
                             else retorno[3] = "erro lexico";
                             conca = "";
                             continue;
-                        case "/r":
+                        case "\r":
                             conca = "";
                             continue;
-                        case "/n":
+                        case "\n":
                             conca = "";
                             continue;
                         default:
