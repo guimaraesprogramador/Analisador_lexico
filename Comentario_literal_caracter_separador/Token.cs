@@ -27,26 +27,38 @@ namespace Comentario_literal_caracter_separador
 
         }
         // busca somente comentario;
-        public static string buscar_token(string retorno)
+        public static char[] buscar_token(char[] cadeia)
         {
-           
-            string lista = "";
-           /* for (int i = 0; i < comentarios.Length; i++)
-            {
-                if (comentarios[i] == retorno)
-                {
-                        token = i;
-                        lista = comentarios[i];
-                        break;
-                }
 
-            }
-            if(lista.Equals(""))
+            char lista = '0';
+            string concat = "";
+            char[] lista_array = cadeia.ToArray();
+            for(int i = 0; i < cadeia.Length; i++)
             {
-                lista = "erro lexico";
-                token = -1;
-            }*/
-            return lista;
+                concat= concat + cadeia[i];
+                if (char.IsLetter(cadeia[i]))
+                {
+                    lista_array[i] = lista;
+                   i = i + 1;
+                  
+                }
+                else
+                {
+                    switch (concat)
+                    {
+                        case "\r":
+                            lista_array[i] = lista;
+                            continue;
+                        case "\n":
+                            lista_array[i] = lista;
+                            continue;
+                        default:
+                            lista_array[i] = cadeia[i];
+                            break;
+                    }
+                }
+            }
+            return lista_array;
         }
     }
 }
