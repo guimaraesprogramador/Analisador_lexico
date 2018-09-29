@@ -12,9 +12,10 @@ namespace Comentario_literal_caracter_separador
         public static string texto { get; set; }
         public static int token { get; set; }
         // como descuber qual lexico
-        public List<string> main()
+        public string[] main()
         {
-            List<String> retorno = new List<string>();
+            string[] retorno = new string[texto.Length];
+            List<string> listar = new List<string>();
             char[] cadeia = texto.ToArray();
             string conca = "";
             for(int i = 0; i < cadeia.Length; i++)
@@ -30,7 +31,7 @@ namespace Comentario_literal_caracter_separador
                    
                     switch (conca)
                     {
-                        case "///":
+                        /*case "///":
                             string[] barra_simple = Index.indice(texto, Token.comentarios[3],i);
                             if (barra_simple[0] != "erro") retorno.Add(Token.comentarios[3] + " " + "na posicao " + barra_simple[0] + "linha " + barra_simple[1]);
                             else retorno[0] = "erro lexico";
@@ -41,25 +42,29 @@ namespace Comentario_literal_caracter_separador
                             if (barra.ToString() != "erro") retorno.Add(Token.comentarios[2] + " " + "na posicao " + barra[0] + barra[1]);
                             else retorno[1] = "erro lexico";
                             conca = "";
-                            continue;
+                            continue;*/
                         case "//":
                             string[] barra_simple_dupla = Index.indice(texto, "//",i);
-                            if (barra_simple_dupla[0] != "erro") retorno.Add(Token.comentarios[0].ToString() + " " + " na posicao " + barra_simple_dupla[0] + " linha " + barra_simple_dupla[1]);
+                            if (barra_simple_dupla[0] != "erro") retorno[i] = Token.comentarios[0].ToString() + " " + " na posicao " + barra_simple_dupla[0] + " linha " + barra_simple_dupla[1];
                             else retorno[2] = "erro lexico";
                             conca = "";
+                            i += 1;
                             continue;
                         case "/*":
-
                             string[] barra_simple_dupla_final = Index.indice(texto, Token.comentarios[1].ToString(), i);
-                            if (barra_simple_dupla_final[0] != "erro") retorno.Add(Token.comentarios[1].ToString() + " " + " na posicao " + barra_simple_dupla_final[0] + " linha " + barra_simple_dupla_final[1]);
-                            else retorno[3] = "erro lexico";
+            if (barra_simple_dupla_final[0] != "erro") retorno[i] = Token.comentarios[1].ToString() + " " + " na posicao " + barra_simple_dupla_final[0] + " linha " + barra_simple_dupla_final[1];
+            else retorno[3] = "erro lexico";
                             conca = "";
+                            i += 1;
                             continue;
                         case "\r":
                             conca = "";
+                           
+
                             continue;
                         case "\n":
                             conca = "";
+                           
                             continue;
                         default:
                             if (i == texto.Length)
@@ -70,7 +75,7 @@ namespace Comentario_literal_caracter_separador
                     }
                 }
             }
-            if (retorno.Equals("")) retorno.Add("erro lexico");
+            
             return retorno;
             
         }

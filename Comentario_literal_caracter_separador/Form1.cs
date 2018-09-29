@@ -25,8 +25,8 @@ namespace Comentario_literal_caracter_separador
         private void analisar_Click(object sender, EventArgs e)
         {
             Comentario_fonte.texto = textBox1.Text;
-            List<String> resposta = fonte.main();
-            for(int o = 0; o < resposta.Count; o++)
+            string[] resposta = fonte.main();
+            for(int o = 0; o < resposta.Length; o++)
             {
                 
                 switch (resposta[o])
