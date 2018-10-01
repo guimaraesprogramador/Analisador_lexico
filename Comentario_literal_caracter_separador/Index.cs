@@ -27,13 +27,14 @@ namespace Comentario_literal_caracter_separador
                    
             }*/
             a[0] = localizado.ToString();
-            
-            for(int linha = 0; linha < texto.Length; linha++)
+            for (int procura_linha = 0; procura_linha < localizado ; procura_linha++)
             {
-                if(linha == localizado)
-                {
-                    a[1] = linha.ToString();
-                }
+                        unsafe
+                        {
+                            int* p;
+                            p = &procura_linha;
+                            a[1] = Convert.ToString(*p);
+                        }
             }
             return a;
         }

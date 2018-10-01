@@ -29,6 +29,7 @@ namespace Comentario_literal_caracter_separador
             switch (letra)
             {
                 case "//":
+                    
                     string[] barra_simple_dupla = Index.indice(texto, "//", i);
                     if (barra_simple_dupla[0] != "erro") retorno.Add(Token.comentarios[0].ToString() + " " + " na posicao " + barra_simple_dupla[0] + " linha " + barra_simple_dupla[1]);
                     else retorno[2] = "erro lexico";
