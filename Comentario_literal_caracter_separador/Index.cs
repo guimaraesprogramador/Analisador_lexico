@@ -12,7 +12,7 @@ namespace Comentario_literal_caracter_separador
         {
             string[] a = new string[2];
             string[] erro =  { "erro" };
-                    Regex buscador2 = new Regex(lexico);
+            /*       Regex buscador2 = new Regex(lexico);
             var math2 = buscador2.Match(texto);
 
             if (math2.Success == false) return a = erro;
@@ -24,7 +24,16 @@ namespace Comentario_literal_caracter_separador
                     math2 = math2.NextMatch();
                 }
                 
-                    a[1] = localizado.ToString();
+                   
+            }*/
+            a[0] = localizado.ToString();
+            
+            for(int linha = 0; linha < texto.Length; linha++)
+            {
+                if(linha == localizado)
+                {
+                    a[1] = linha.ToString();
+                }
             }
             return a;
         }

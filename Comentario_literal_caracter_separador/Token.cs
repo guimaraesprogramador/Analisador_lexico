@@ -14,7 +14,7 @@ namespace Comentario_literal_caracter_separador
             {
                 string[] arrays = new string[5];
                 arrays[0] = "//";
-                arrays[1] = "/*";
+                arrays[1] = "/* */";
                 arrays[2] = "/**";
                 arrays[3] = "///";
                 arrays[4] = "\n";
@@ -27,38 +27,10 @@ namespace Comentario_literal_caracter_separador
 
         }
         // busca somente comentario;
-        public static char[] buscar_token(char[] cadeia)
+        public static string Idetificado(string cadeia)
         {
-
-            char lista = '0';
-            string concat = "";
-            char[] lista_array = cadeia.ToArray();
-            for(int i = 0; i < cadeia.Length; i++)
-            {
-                concat= concat + cadeia[i];
-                if (char.IsLetter(cadeia[i]))
-                {
-                    lista_array[i] = lista;
-                   i = i + 1;
-                  
-                }
-                else
-                {
-                    switch (concat)
-                    {
-                        case "\r":
-                            lista_array[i] = lista;
-                            continue;
-                        case "\n":
-                            lista_array[i] = lista;
-                            continue;
-                        default:
-                            lista_array[i] = cadeia[i];
-                            break;
-                    }
-                }
-            }
-            return lista_array;
+            string ident = cadeia != ""?ident = "erro lexico" : ident = "";
+            return ident;
         }
     }
 }
