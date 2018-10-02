@@ -19,22 +19,19 @@ namespace Comentario_literal_caracter_separador
             char[] cadeia = texto.ToArray();
             string conca = "";
             for(int i = 0; i < cadeia.Length; i++)
-            {
-                unsafe
-                {
-                    
+            {       
                     conca = conca + cadeia[i];
                     
                     if (char.IsLetter(cadeia[i]))
                     {
-                        conca = "";
+                    conca = null;
                     }
                     else
                     {
                         
                         conca = Identificador.buscar_token(conca, retorno, i);
                     }
-                }
+                
             }
             return retorno;
             

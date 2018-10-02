@@ -27,7 +27,7 @@ namespace Comentario_literal_caracter_separador
                    
             }*/
             a[0] = localizado.ToString();
-            for (int procura_linha = 0; procura_linha < localizado ; procura_linha++)
+           /* for (int procura_linha = 0; procura_linha < localizado ; procura_linha++)
             {
                         unsafe
                         {
@@ -35,7 +35,7 @@ namespace Comentario_literal_caracter_separador
                             p = &procura_linha;
                             a[1] = Convert.ToString(*p);
                         }
-            }
+            }*/
             return a;
         }
     }

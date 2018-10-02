@@ -43,10 +43,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(80, 62);
+            this.textBox1.Location = new System.Drawing.Point(28, 95);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(113, 99);
+            this.textBox1.Size = new System.Drawing.Size(177, 163);
             this.textBox1.TabIndex = 0;
             // 
             // listBox1
