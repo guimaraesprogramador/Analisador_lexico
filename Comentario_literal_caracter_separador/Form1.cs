@@ -45,7 +45,7 @@ namespace Comentario_literal_caracter_separador
                         {
                             listBox1.Items.Add(resposta[o].ToString());
                             //     textBox2.Text = Convert.ToString(Comentario_fonte.token);
-                            // listBox2.Items.Add(Identificador.comentario_identifador(Token.token));
+                             listBox2.Items.Add(Identificador.comentario_identifador(resposta[o]));
                         }
 
                         break;

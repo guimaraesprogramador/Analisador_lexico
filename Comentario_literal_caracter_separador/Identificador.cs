@@ -18,10 +18,20 @@ namespace Comentario_literal_caracter_separador
             }
         }
         //busca identificar de comentario..
-        public static string comentario_identifador(int i)
+        public static List<string> comentario_identifador(string i)
         {
-            //string numero = pegar_identicado(i);
-            return null;
+            List<string> lista = new List<string>();
+            switch (i)
+            {
+                case "//":
+                    lista.Add("comentario");
+                    break;
+                case "/*":
+                    lista.Add("comentario");
+                    break;
+
+            }
+            return lista;
         }
         public static string buscar_token(string conca, List<string> retorno, int i)
         {
@@ -41,7 +51,13 @@ namespace Comentario_literal_caracter_separador
                     else retorno[3] = "erro lexico";
                     letra = "";
                     break;
-               
+                default:
+                    if(letra != null)
+                    {
+                        string erros = Token.Idetificado(letra);
+                        if (!erros.Equals("")) retorno.Add(erros);
+                    }
+                    break;
             }
             return letra;
         }
