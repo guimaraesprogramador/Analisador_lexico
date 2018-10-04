@@ -127,6 +127,7 @@
             this.pesquisar.TabIndex = 11;
             this.pesquisar.Text = "Buscar arquivo";
             this.pesquisar.UseVisualStyleBackColor = true;
+            this.pesquisar.Click += new System.EventHandler(this.pesquisar_Click);
             // 
             // openFileDialog1
             // 

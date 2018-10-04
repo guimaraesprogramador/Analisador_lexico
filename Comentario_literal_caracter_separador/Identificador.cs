@@ -18,20 +18,14 @@ namespace Comentario_literal_caracter_separador
             }
         }
         //busca identificar de comentario..
-        public static List<string> comentario_identifador(string i)
+        public static string comentario_identifador(string i)
         {
-            List<string> lista = new List<string>();
-            switch (i)
-            {
-                case "//":
-                    lista.Add("comentario");
-                    break;
-                case "/*":
-                    lista.Add("comentario");
-                    break;
 
-            }
-            return lista;
+            string comentario = "";
+            int procurar_comentario = i.IndexOf("//") == 0 || i.IndexOf("/*")==0 ? procurar_comentario = 0 : procurar_comentario = -1;
+            if (procurar_comentario == 0) comentario = "comentario";
+            else comentario = null;
+            return comentario;
         }
         public static string buscar_token(string conca, List<string> retorno, int i)
         {

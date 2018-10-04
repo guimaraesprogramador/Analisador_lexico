@@ -26,9 +26,18 @@ namespace Comentario_literal_caracter_separador
         {
             Comentario_fonte.texto = textBox1.Text;
            List<string> resposta = fonte.main();
-            for(int o = 0; o < resposta.Count; o++)
+            analisador_lexico(resposta);
+        }
+
+        private void pesquisar_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void analisador_lexico(List<string> resposta)
+        {
+            for (int o = 0; o < resposta.Count; o++)
             {
-                
+
                 switch (resposta[o])
                 {
                     case "erro de identicador":
@@ -45,7 +54,9 @@ namespace Comentario_literal_caracter_separador
                         {
                             listBox1.Items.Add(resposta[o].ToString());
                             //     textBox2.Text = Convert.ToString(Comentario_fonte.token);
-                             listBox2.Items.Add(Identificador.comentario_identifador(resposta[o]));
+                            string item = Identificador.comentario_identifador(resposta[o]) != null? Identificador.comentario_identifador(resposta[o]) : null;
+                            if (item != null) listBox2.Items.Add(item);
+                           
                         }
 
                         break;
