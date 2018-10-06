@@ -8,34 +8,23 @@ namespace Comentario_literal_caracter_separador
 {
    public class Index
     {
-       public static string[] indice(string texto, string lexico, int localizado)
+       public static List<string> indice(string texto, int localizado)
         {
-            string[] a = new string[2];
+            List<string> array_lista = new List<string>();
+            string restaura_texto = null;
             string[] erro =  { "erro" };
-            /*       Regex buscador2 = new Regex(lexico);
-            var math2 = buscador2.Match(texto);
-
-            if (math2.Success == false) return a = erro;
+            int eol = texto.IndexOf("\\") == 0 ? eol = 0 : eol = -1;
+            if (eol == 0) {
+               string caracter = restaura_texto = texto.Substring(eol);
+                array_lista.Add(caracter + " posicao " + localizado);
+            }
             else
             {
-                while (math2.Success)
-                {
-                    a[0] = math2.Index.ToString();
-                    math2 = math2.NextMatch();
-                }
-                
-                   
-            }*/
-            a[0] = localizado.ToString();
-           /* for (int procura_linha = 0; procura_linha < localizado ; procura_linha++)
-            {
-                        unsafe
-                        {
-                            int* p;
-                            p = &procura_linha;
-                            a[1] = Convert.ToString(*p);
-                        }
-            }*/
+
+            }
+
+               
+            
             return a;
         }
     }

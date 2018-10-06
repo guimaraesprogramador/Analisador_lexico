@@ -26,10 +26,42 @@ namespace Comentario_literal_caracter_separador
             }
 
         }
-        // busca somente comentario;
-        public static string Idetificado(string cadeia)
+        public static string[] eof
         {
-            string ident = cadeia != ""?ident = "erro lexico" : ident = "";
+            get
+            {
+                string[] eof_array = new string[11];
+                eof_array[0] = "\'";
+                eof_array[1] = "\''";
+                eof_array[2] = "\\";
+                eof_array[3] = "\0";
+                eof_array[4] = "''";
+                eof_array[5] = "\a";
+                eof_array[6] = "\b";
+                eof_array[7] = "\f";
+                eof_array[8] = "\r";
+                eof_array[9] = "\t";
+                eof_array[10] = "\v";
+                return eof_array;
+               
+            }
+           set {
+                eof = value;
+            }
+        }
+        // busca somente comentario;
+        public static string identicadores(string cadeia)
+        {
+            string ident = null;
+            for (int i = 0; i < eof.Length; i++)
+            {
+                if (cadeia != eof[i])
+                {
+                    ident = "erro metadado";
+                    break;
+                }
+            }
+            if (ident != "erro metadado") ident = "erro lexico";
             return ident;
         }
     }

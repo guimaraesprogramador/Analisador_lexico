@@ -40,8 +40,8 @@ namespace Comentario_literal_caracter_separador
 
                 switch (resposta[o])
                 {
-                    case "erro de identicador":
-                        listBox3.Items.Add("erro de identicador");
+                    case "erro metadado":
+                        listBox3.Items.Add("erro metadado");
                         break;
                     case "erro lexico":
                         listBox3.Items.Add("erro lexico");

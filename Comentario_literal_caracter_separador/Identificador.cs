@@ -29,28 +29,32 @@ namespace Comentario_literal_caracter_separador
         }
         public static string buscar_token(string conca, List<string> retorno, int i)
         {
-            string letra = conca == "/r" || conca == "\n" || conca == "*/" || string.IsNullOrWhiteSpace (conca)==true? letra = null : letra = conca;
+            string letra = conca == "/r" || conca == "\n" || conca == "*/" || string.IsNullOrWhiteSpace (conca)==true|| string.IsNullOrEmpty(conca) == true? letra = null : letra = conca;
             switch (letra)
             {
                 case "//":
                     
-                    string[] barra_simple_dupla = Index.indice(texto, "//", i);
-                    if (barra_simple_dupla[0] != "erro") retorno.Add(Token.comentarios[0].ToString() + " " + " na posicao " + barra_simple_dupla[0] + " linha " + barra_simple_dupla[1]);
+                    List<string> barra_simple_dupla = Index.indice(letra, i);
+                    if (barra_simple_dupla[0] != "erro") retorno.Add(barra_simple_dupla[0]);
                     else retorno[2] = "erro lexico";
                     letra = "";
                     break;
                 case "/*":
-                    string[] barra_simple_dupla_final = Index.indice(texto, Token.comentarios[1].ToString(), i);
-                    if (barra_simple_dupla_final[0] != "erro") retorno.Add(Token.comentarios[1].ToString() + " " + " na posicao " + barra_simple_dupla_final[0] + " linha " + barra_simple_dupla_final[1]);
+                    List<string> barra_simple_dupla_final = Index.indice(letra, i);
+                    if (barra_simple_dupla_final[0] != "erro") retorno.Add(barra_simple_dupla_final[0]);
                     else retorno[3] = "erro lexico";
                     letra = "";
                     break;
                 default:
-                    if(letra != null)
+                    string p = letra == "\\" ? p = letra : letra = null;
+                    if (p != null)
                     {
-                        string erros = Token.Idetificado(letra);
-                        if (!erros.Equals("")) retorno.Add(erros);
+                                List<string> caracter = Index.indice(texto, i);
+                                if (caracter[0] != "erro") retorno.Add( caracter[0]);
+                                break;  
                     }
+                   /* string erros = Token.identicadores(letra);
+                    if (!erros.Equals("")) retorno.Add(erros);*/
                     break;
             }
             return letra;
