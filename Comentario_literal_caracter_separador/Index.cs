@@ -10,25 +10,24 @@ namespace Comentario_literal_caracter_separador
 {
    public class Index
     {
-       public static List<string> indice(string texto, int localizado)
+       public static string[] indice(string texto, int localizado)
         {
             string[] array_lista = new string[2];
             string[] erro =  { "erro" };
             List<string> linha_posicao = new List<string>();
-            string concatena = "";
-            for(int i = 0; i < Comentario_fonte.token.Length; i++)
+            array_lista[0] = localizado.ToString();
+           for(int i = 0; i < Comentario_fonte.token.Length; i++)
             {
                 if(Comentario_fonte.token[i] != null)
                 {
-                    int separa = Comentario_fonte.token[i].IndexOf("//");
-                    linha_posicao.Add("posicao " + localizado.ToString() + "linha " + separa);
-                    i++;
+                    array_lista[1] = "linha " + i;
+                    Comentario_fonte.token[i] = null;
+                    break;
                 }
-                Comentario_fonte.token[i] = null;
+                
             }
-            
-           
-            return linha_posicao;
+
+            return array_lista;
         }
       
     }
