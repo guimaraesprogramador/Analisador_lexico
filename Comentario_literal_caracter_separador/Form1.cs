@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace Comentario_literal_caracter_separador
 {
     public partial class Form1 : Form
@@ -19,11 +19,13 @@ namespace Comentario_literal_caracter_separador
             listBox3.Items.Clear();
             listBox1.Items.Clear();
             listBox2.Items.Clear();
+            textBox1.ScrollBars = ScrollBars.Horizontal;
             fonte = new Comentario_fonte();
         }
 
         private void analisar_Click(object sender, EventArgs e)
         {
+            Comentario_fonte.token = textBox1.Lines;
             Comentario_fonte.texto = textBox1.Text;
            List<string> resposta = fonte.main();
             analisador_lexico(resposta);
@@ -31,8 +33,15 @@ namespace Comentario_literal_caracter_separador
 
         private void pesquisar_Click(object sender, EventArgs e)
         {
-
-        }
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            //openFileDialog.Filter = "*.txt";
+            openFileDialog.ShowDialog();
+            Stream stream = openFileDialog.OpenFile();
+            using (StreamReader sr = new StreamReader(stream))
+            {
+               
+            }
+            }
         public void analisador_lexico(List<string> resposta)
         {
             for (int o = 0; o < resposta.Count; o++)

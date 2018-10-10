@@ -55,13 +55,13 @@ namespace Comentario_literal_caracter_separador
             string ident = null;
             for (int i = 0; i < eof.Length; i++)
             {
-                if (cadeia != eof[i])
+                if (cadeia == eof[i])
                 {
                     ident = "erro metadado";
                     break;
                 }
             }
-            if (ident != "erro metadado") ident = "erro lexico";
+            
             return ident;
         }
     }

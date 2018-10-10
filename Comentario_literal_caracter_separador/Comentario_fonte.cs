@@ -10,7 +10,7 @@ namespace Comentario_literal_caracter_separador
    public class Comentario_fonte
     {
         public static string texto { get; set; }
-        public static unsafe  int* token { get; set; }
+        public static string[] token { get; set; }
         // como descuber qual lexico
         public List<string> main()
         {
@@ -19,18 +19,11 @@ namespace Comentario_literal_caracter_separador
             char[] cadeia = texto.ToArray();
             string conca = "";
             for(int i = 0; i < cadeia.Length; i++)
-            {       
-                    conca = conca + cadeia[i];
-                    
-                    if (char.IsLetter(cadeia[i]))
-                    {
-                    conca = null;
-                    }
-                    else
-                    {
-                        
-                        conca = Identificador.buscar_token(conca, retorno, i);
-                    }
+            {
+                conca = conca + cadeia[i];
+
+
+                conca = Identificador.buscar_token(conca, retorno, i);
                 
             }
             return retorno;

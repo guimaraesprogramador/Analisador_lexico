@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,29 +30,30 @@ namespace Comentario_literal_caracter_separador
         }
         public static string buscar_token(string conca, List<string> retorno, int i)
         {
-            string letra = conca == "/r" || conca == "\n" || conca == "*/" || string.IsNullOrWhiteSpace (conca)==true|| string.IsNullOrEmpty(conca) == true? letra = null : letra = conca;
+            string letra = conca == "/r" || conca == "\n" || conca == "*/" ? letra = null : letra =  conca;
             switch (letra)
             {
                 case "//":
                     
                     List<string> barra_simple_dupla = Index.indice(letra, i);
-                    if (barra_simple_dupla[0] != "erro") retorno.Add(barra_simple_dupla[0]);
-                    else retorno[2] = "erro lexico";
-                    letra = "";
+                    retorno.Add(barra_simple_dupla[0]);
+                    letra = letra.Remove(letra.Length-1);
                     break;
                 case "/*":
+
                     List<string> barra_simple_dupla_final = Index.indice(letra, i);
-                    if (barra_simple_dupla_final[0] != "erro") retorno.Add(barra_simple_dupla_final[0]);
-                    else retorno[3] = "erro lexico";
-                    letra = "";
+                    retorno = barra_simple_dupla_final;
+                    letra = letra.Remove(letra.Length - 1);
                     break;
                 default:
-                    string p = letra == "\\" ? p = letra : letra = null;
-                    if (p != null)
+                    if(letra != null)
                     {
-                                List<string> caracter = Index.indice(texto, i);
-                                if (caracter[0] != "erro") retorno.Add( caracter[0]);
-                                break;  
+
+                       
+                           string erro_mentados = Token.identicadores(letra);
+                            string resultado = erro_mentados == "erro metadado" ? resultado = erro_mentados : resultado = null;
+                            if (resultado != null) retorno.Add(resultado);
+    
                     }
                    /* string erros = Token.identicadores(letra);
                     if (!erros.Equals("")) retorno.Add(erros);*/

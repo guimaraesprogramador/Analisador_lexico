@@ -4,28 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Globalization;
+
 namespace Comentario_literal_caracter_separador
 {
    public class Index
     {
        public static List<string> indice(string texto, int localizado)
         {
-            List<string> array_lista = new List<string>();
-            string restaura_texto = null;
+            string[] array_lista = new string[2];
             string[] erro =  { "erro" };
-            int eol = texto.IndexOf("\\") == 0 ? eol = 0 : eol = -1;
-            if (eol == 0) {
-               string caracter = restaura_texto = texto.Substring(eol);
-                array_lista.Add(caracter + " posicao " + localizado);
-            }
-            else
+            List<string> linha_posicao = new List<string>();
+            string concatena = "";
+            for(int i = 0; i < Comentario_fonte.token.Length; i++)
             {
-
+                if(Comentario_fonte.token[i] != null)
+                {
+                    int separa = Comentario_fonte.token[i].IndexOf("//");
+                    linha_posicao.Add("posicao " + localizado.ToString() + "linha " + separa);
+                    i++;
+                }
+                Comentario_fonte.token[i] = null;
             }
-
-               
             
-            return a;
+           
+            return linha_posicao;
         }
+      
     }
 }
