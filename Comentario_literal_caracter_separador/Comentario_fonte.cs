@@ -21,9 +21,15 @@ namespace Comentario_literal_caracter_separador
             for(int i = 0; i < cadeia.Length; i++)
             {
                 conca = conca + cadeia[i];
-
-
-                conca = Identificador.buscar_token(conca, retorno, i);
+                if (char.IsLetter(cadeia[i]))
+                {
+                    conca = null;
+                }
+                else
+                {
+                    conca = Identificador.buscar_token(conca, retorno, i);
+                }
+               
                 
             }
             return retorno;

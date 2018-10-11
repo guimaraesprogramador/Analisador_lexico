@@ -57,7 +57,7 @@ namespace Comentario_literal_caracter_separador
             {
                 if (cadeia == eof[i])
                 {
-                    ident = "erro metadado";
+                    ident = eof[i];
                     break;
                 }
             }

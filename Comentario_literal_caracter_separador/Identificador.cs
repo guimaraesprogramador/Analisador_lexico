@@ -30,29 +30,29 @@ namespace Comentario_literal_caracter_separador
         }
         public static string buscar_token(string conca, List<string> retorno, int i)
         {
-            string letra = conca == "/r" || conca == "\n" || conca == "*/" ? letra = null : letra =  conca;
+            string letra = conca == "/r" || conca == "\n" || conca == "*/"|| string.IsNullOrWhiteSpace(conca)==true ? letra = null : letra =  conca;
             switch (letra)
             {
                 case "//":
                     
-                    List<string> barra_simple_dupla = Index.indice(letra, i);
-                    retorno.Add(barra_simple_dupla[0]);
-                    letra = letra.Remove(letra.Length-1);
+                    string[] barra_simple_dupla = Index.indice(letra, i);
+                    retorno.Add("//"+barra_simple_dupla[0]);
+                    
                     break;
                 case "/*":
 
-                    List<string> barra_simple_dupla_final = Index.indice(letra, i);
-                    retorno = barra_simple_dupla_final;
-                    letra = letra.Remove(letra.Length - 1);
+                    string[] barra_simple_dupla_final = Index.indice(letra, i);
+                    retorno.Add("/**/" +barra_simple_dupla_final[0]);
+                    
                     break;
                 default:
                     if(letra != null)
                     {
 
                        
-                           string erro_mentados = Token.identicadores(letra);
+                        /*   string erro_mentados = Token.identicadores(letra);
                             string resultado = erro_mentados == "erro metadado" ? resultado = erro_mentados : resultado = null;
-                            if (resultado != null) retorno.Add(resultado);
+                            if (resultado != null) retorno.Add(resultado);*/
     
                     }
                   

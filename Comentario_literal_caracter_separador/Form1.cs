@@ -19,7 +19,7 @@ namespace Comentario_literal_caracter_separador
             listBox3.Items.Clear();
             listBox1.Items.Clear();
             listBox2.Items.Clear();
-            textBox1.ScrollBars = ScrollBars.Horizontal;
+            
             fonte = new Comentario_fonte();
         }
 
@@ -63,8 +63,8 @@ namespace Comentario_literal_caracter_separador
                         {
                             listBox1.Items.Add(resposta[o].ToString());
                             //     textBox2.Text = Convert.ToString(Comentario_fonte.token);
-                            string item = Identificador.comentario_identifador(resposta[o]) != null? Identificador.comentario_identifador(resposta[o]) : null;
-                            if (item != null) listBox2.Items.Add(item);
+                            /*string item = Identificador.comentario_identifador(resposta[o]) != null? Identificador.comentario_identifador(resposta[o]) : null;
+                            if (item != null) listBox2.Items.Add(item);*/
                            
                         }
 
