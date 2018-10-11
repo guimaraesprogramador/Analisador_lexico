@@ -11,7 +11,6 @@ namespace Comentario_literal_caracter_separador
     {
         public static string texto { get; set; }
         public static string[] token { get; set; }
-        public static string[] coluna { get; set; }
         // como descuber qual lexico
         public List<string> main()
         {
@@ -22,10 +21,7 @@ namespace Comentario_literal_caracter_separador
             for(int i = 0; i < cadeia.Length; i++)
             {
                 conca = conca + cadeia[i];
-                if (char.IsLetter(cadeia[i]))
-                {
-                    conca = null;
-                }
+
 
                 conca = Identificador.buscar_token(conca, retorno, i);
                 

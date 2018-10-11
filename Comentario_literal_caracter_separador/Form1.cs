@@ -27,7 +27,6 @@ namespace Comentario_literal_caracter_separador
         {
             Comentario_fonte.token = textBox1.Lines;
             Comentario_fonte.texto = textBox1.Text;
-            //Comentario_fonte.coluna = textBox1.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
            List<string> resposta = fonte.main();
             analisador_lexico(resposta);
         }
