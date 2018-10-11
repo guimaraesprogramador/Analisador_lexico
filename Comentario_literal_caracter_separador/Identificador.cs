@@ -36,22 +36,26 @@ namespace Comentario_literal_caracter_separador
                 case "//":
                     
                     string[] barra_simple_dupla = Index.indice(letra, i);
-                    retorno.Add("//"+barra_simple_dupla[0]);
+                    retorno.Add("é comentario");
                     
                     break;
                 case "/*":
 
                     string[] barra_simple_dupla_final = Index.indice(letra, i);
-                    retorno.Add("/**/" +barra_simple_dupla_final[0]);
+                    retorno.Add("é comentario");
                     
+                    break;
+                case "/**":
+                    string[] barra_simples_dupla = Index.indice(letra, i);
+                    retorno.Add("é comentario");
                     break;
                 default:
                     if(letra != null)
                     {
-
+                        //erro de comentario
                        
-                        /*   string erro_mentados = Token.identicadores(letra);
-                            string resultado = erro_mentados == "erro metadado" ? resultado = erro_mentados : resultado = null;
+                         /* string erro_mentados = Token.identicadores(letra);
+                            string resultado = erro_mentados != "erro metadado" ? resultado = erro_mentados : resultado = null;
                             if (resultado != null) retorno.Add(resultado);*/
     
                     }

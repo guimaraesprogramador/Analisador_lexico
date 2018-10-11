@@ -31,11 +31,11 @@ namespace Comentario_literal_caracter_separador
             get
             {
                 string[] eof_array = new string[11];
-                eof_array[0] = "\'";
-                eof_array[1] = "\''";
-                eof_array[2] = "\\";
-                eof_array[3] = "\0";
-                eof_array[4] = "''";
+                eof_array[0] = @"\'";
+                eof_array[1] = @"'\\";
+                eof_array[2] = @"\";
+                eof_array[3] = @"\0";
+                eof_array[4] = @"\'";
                 eof_array[5] = "\a";
                 eof_array[6] = "\b";
                 eof_array[7] = "\f";
@@ -58,7 +58,7 @@ namespace Comentario_literal_caracter_separador
                 if (cadeia == eof[i])
                 {
                     ident = eof[i];
-                    break;
+                    return ident;
                 }
             }
             

@@ -59,15 +59,19 @@ namespace Comentario_literal_caracter_separador
                         listBox3.Items.Add("erro lexico e identicador");
                         break;
                     default:
-                        if (resposta[o] != null)
+                        if (resposta[o] != "é comentario")
                         {
                             listBox1.Items.Add(resposta[o].ToString());
                             //     textBox2.Text = Convert.ToString(Comentario_fonte.token);
                             /*string item = Identificador.comentario_identifador(resposta[o]) != null? Identificador.comentario_identifador(resposta[o]) : null;
                             if (item != null) listBox2.Items.Add(item);*/
-                           
                         }
 
+                        else
+                        {
+                            listBox4.Items.Add(resposta[o].ToString());
+                        }
+                       
                         break;
                 }
             }

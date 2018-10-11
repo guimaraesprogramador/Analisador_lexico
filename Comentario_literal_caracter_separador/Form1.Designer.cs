@@ -39,6 +39,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pesquisar = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label2 = new System.Windows.Forms.Label();
+            this.listBox4 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -97,9 +99,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(241, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "lexico";
+            this.label3.Text = "lexemas";
             // 
             // label4
             // 
@@ -133,11 +135,30 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(787, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(147, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Comentarios não são lexemas";
+            // 
+            // listBox4
+            // 
+            this.listBox4.FormattingEnabled = true;
+            this.listBox4.Location = new System.Drawing.Point(790, 49);
+            this.listBox4.Name = "listBox4";
+            this.listBox4.Size = new System.Drawing.Size(137, 238);
+            this.listBox4.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(939, 450);
+            this.Controls.Add(this.listBox4);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.pesquisar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -168,6 +189,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button pesquisar;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox listBox4;
     }
 }
 
