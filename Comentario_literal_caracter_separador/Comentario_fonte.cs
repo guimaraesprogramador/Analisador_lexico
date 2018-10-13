@@ -16,22 +16,47 @@ namespace Comentario_literal_caracter_separador
         {
            
             List<string> retorno = new List<string>();
-            char[] cadeia = texto.ToArray();
-            string conca = "";
-            for(int i = 0; i < cadeia.Length; i++)
+            StringBuilder builder = new StringBuilder();
+            
+            for(int i = 0; i < texto.Length; i++)
             {
-                conca = conca + cadeia[i];
-                if (char.IsLetter(cadeia[i]))
+                builder.Append(texto[i]);
+                string demiliar = builder.ToString();
+                if (char.IsLetter(demiliar[i]))
                 {
-                    conca = null;
+                    Token.identicadores(demiliar[i].ToString(), demiliar);
+                }
+                if (char.IsDigit(demiliar[i]))
+                {
+                    Token.identicadores(demiliar[i].ToString(),demiliar);
                 }
                 else
                 {
-                    conca = Identificador.buscar_token(conca, retorno, i);
+                   Identificador.buscar_token(demiliar[i].ToString(),demiliar, retorno, i);
                 }
-               
-                
             }
+
+            //char[] cadeia = texto.ToArray();
+
+            /* for (int i = 0; i < cadeia.Length; i++)
+             {
+                 concatena = concatena + cadeia[i];
+                 if (char.IsLetter(cadeia[i]))
+                 {
+                     concatena = Token.identicadores(concatena);                    
+                 }
+                 if (char.IsDigit(cadeia[i]))
+                 {
+                     concatena = Token.identicadores(concatena);
+                 }
+                 else
+                 {
+                     concatena = Identificador.buscar_token(concatena, retorno, i);
+                 }
+
+
+             }*/
+            builder.Clear();
             return retorno;
             
         }
