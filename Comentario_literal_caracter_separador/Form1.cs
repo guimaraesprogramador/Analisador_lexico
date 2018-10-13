@@ -22,10 +22,10 @@ namespace Comentario_literal_caracter_separador
             
             fonte = new Comentario_fonte();
         }
-
+        public static int linha;
         private void analisar_Click(object sender, EventArgs e)
         {
-           
+            linha = textBox1.Lines.Count();
             Comentario_fonte.texto = textBox1.Text;
            List<string> resposta = fonte.main();
             analisador_lexico(resposta);

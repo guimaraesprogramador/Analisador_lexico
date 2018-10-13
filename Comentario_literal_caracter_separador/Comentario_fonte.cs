@@ -17,13 +17,24 @@ namespace Comentario_literal_caracter_separador
            
             List<string> retorno = new List<string>();
              builder = new StringBuilder();
-           
-            for (int i = 0; i < texto.Length; i++)
+            string demiliar = "";
+            string remover = texto.Replace("\r\n", string.Empty);
+            for (int i = 0; i < remover.Length; i++)
             {
-                builder.Append(texto[i]);
-                string demiliar = builder.ToString();
-                   Identificador.buscar_token(demiliar[i].ToString(),demiliar, retorno, i);
-                
+                builder.Append(remover[i]);
+                demiliar = builder.ToString();
+                if (char.IsLetter(remover[i]))
+                {
+                    demiliar =  Token.identicadores(demiliar[i].ToString(), demiliar, i);
+                }
+                else if ( char.IsDigit(remover[i]))
+                {
+                  demiliar =   Token.identicadores(demiliar[i].ToString(), demiliar, i);
+                }
+                else if(!char.IsDigit(remover[i])&& !char.IsLetter(texto[i]))
+                {
+                  demiliar =   Identificador.buscar_token(demiliar[i].ToString(), demiliar, retorno, i);
+                }
             }
 
             //char[] cadeia = texto.ToArray();

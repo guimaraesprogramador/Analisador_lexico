@@ -30,8 +30,8 @@ namespace Comentario_literal_caracter_separador
         }
         public static string buscar_token(string conca,string palavra, List<string> retorno, int i)
         {
-            string letra = palavra == "\r\n"||conca == "\r" || conca == "\n" || conca == "*/"|| 
-                string.IsNullOrWhiteSpace(conca)==true ? letra = null : letra = conca;
+            string letra = palavra == "\r\n"||palavra == "\r" || palavra == "\n" || palavra == "*/"|| 
+                string.IsNullOrWhiteSpace(palavra)==true ? letra = null : letra =palavra;
             switch (letra)
             {
                 case "//":
@@ -62,8 +62,7 @@ namespace Comentario_literal_caracter_separador
                             retorno.Add(resultado + " " + literal_carater[0] + literal_carater[1] + "valor " + literal_carater[2]);
                          
                         }
-                        
-                        
+                        var proxima = builder.
     
                     }
                   

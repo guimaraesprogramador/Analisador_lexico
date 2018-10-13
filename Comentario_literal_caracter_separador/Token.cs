@@ -82,8 +82,8 @@ namespace Comentario_literal_caracter_separador
             {
                 var separar = cadeia.Replace("\r\n", string.Empty);
                 
-                divitir_primeiro_numero = separar.ToString().Take(separar.Length /conta ).ToArray();
-                divitir_por_ultimo = separar.ToString().Skip(separar.Length / conta).ToArray();
+                divitir_primeiro_numero = separar.ToString().Take(separar.Length /Form1.linha ).ToArray();
+                divitir_por_ultimo = separar.ToString().Skip(separar.Length / Form1.linha).ToArray();
                 resultado_primeiro =  Index.remover_r_n(divitir_primeiro_numero);
                 resultado_ultimo = Index.remover_r_n(divitir_por_ultimo);
             }
