@@ -10,7 +10,6 @@ namespace Comentario_literal_caracter_separador
    public class Comentario_fonte
     {
         public static string texto { get; set; }
-        public static string[] token { get; set; }
         public static StringBuilder builder;
         // como descuber qual lexico
         public List<string> main()

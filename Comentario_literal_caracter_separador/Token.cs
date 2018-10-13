@@ -68,7 +68,6 @@ namespace Comentario_literal_caracter_separador
        
         public static string identicadores(string posicao,string cadeia, int index)
         {
-            int conta = 0;
             char[] divitir_primeiro_numero;
             char[] divitir_por_ultimo;
             string resultado_primeiro = null;
@@ -78,12 +77,13 @@ namespace Comentario_literal_caracter_separador
             string u_maisculo = eof[11] + buscar_single_character.ToString().Trim() + "'";
             string x = eof[12] + buscar_single_character.ToString().Trim() + "'";
             int espaço = cadeia.IndexOf("\r\n");
-            conta = conta + index;
+            
             if (espaço >= 0)
             {
                 var separar = cadeia.Replace("\r\n", string.Empty);
-                divitir_primeiro_numero = separar.ToString().Take(separar.Length /2 ).ToArray();
-                divitir_por_ultimo = separar.ToString().Skip(separar.Length / 2).ToArray();
+                
+                divitir_primeiro_numero = separar.ToString().Take(separar.Length /conta ).ToArray();
+                divitir_por_ultimo = separar.ToString().Skip(separar.Length / conta).ToArray();
                 resultado_primeiro =  Index.remover_r_n(divitir_primeiro_numero);
                 resultado_ultimo = Index.remover_r_n(divitir_por_ultimo);
             }
