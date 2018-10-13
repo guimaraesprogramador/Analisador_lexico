@@ -11,29 +11,20 @@ namespace Comentario_literal_caracter_separador
     {
         public static string texto { get; set; }
         public static string[] token { get; set; }
+        public static StringBuilder builder;
         // como descuber qual lexico
         public List<string> main()
         {
            
             List<string> retorno = new List<string>();
-            StringBuilder builder = new StringBuilder();
-            
-            for(int i = 0; i < texto.Length; i++)
+             builder = new StringBuilder();
+           
+            for (int i = 0; i < texto.Length; i++)
             {
                 builder.Append(texto[i]);
                 string demiliar = builder.ToString();
-                if (char.IsLetter(demiliar[i]))
-                {
-                    Token.identicadores(demiliar[i].ToString(), demiliar);
-                }
-                if (char.IsDigit(demiliar[i]))
-                {
-                    Token.identicadores(demiliar[i].ToString(),demiliar);
-                }
-                else
-                {
                    Identificador.buscar_token(demiliar[i].ToString(),demiliar, retorno, i);
-                }
+                
             }
 
             //char[] cadeia = texto.ToArray();

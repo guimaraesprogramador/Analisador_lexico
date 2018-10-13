@@ -30,8 +30,8 @@ namespace Comentario_literal_caracter_separador
         }
         public static string buscar_token(string conca,string palavra, List<string> retorno, int i)
         {
-            string letra = palavra == "\r\n"||palavra == "\r" || palavra == "\n" || palavra == "*/"|| 
-                string.IsNullOrWhiteSpace(palavra)==true ? letra = null : letra =  palavra;
+            string letra = palavra == "\r\n"||conca == "\r" || conca == "\n" || conca == "*/"|| 
+                string.IsNullOrWhiteSpace(conca)==true ? letra = null : letra = conca;
             switch (letra)
             {
                 case "//":
@@ -42,7 +42,7 @@ namespace Comentario_literal_caracter_separador
                     break;
                 case "/*":
 
-                    string[] barra_simple_dupla_final = Index.indice(letra, i);
+                    //string[] barra_simple_dupla_final = Index.indice(letra, i);
                     retorno.Add("é comentario");
                     
                     break;
@@ -55,12 +55,14 @@ namespace Comentario_literal_caracter_separador
                     {
                         //erro de comentario
                        
-                          string erro_mentados = Token.identicadores(letra,palavra);
-                            string resultado = erro_mentados != "erro metadado"&& erro_mentados !=letra ? resultado = erro_mentados : resultado = null;
+                          string erro_mentados = Token.identicadores(letra,palavra, i);
+                            string resultado = erro_mentados != "erro metadado"&& erro_mentados ==letra ? resultado = erro_mentados : resultado = null;
                         if (resultado != null) {
                             string[] literal_carater = Index.indice(resultado, i);
-                            retorno.Add( literal_carater[0] +literal_carater[1] +"valor "+literal_carater[2]);
+                            retorno.Add(resultado + " " + literal_carater[0] + literal_carater[1] + "valor " + literal_carater[2]);
+                         
                         }
+                        
                         
     
                     }

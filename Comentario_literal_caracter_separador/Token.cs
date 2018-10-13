@@ -42,19 +42,20 @@ namespace Comentario_literal_caracter_separador
         {
             get
             {
-                string[] eof_array = new string[12];
-                eof_array[0] = "'\'";
-                eof_array[1] = "'\\'";
-                eof_array[2] = "'\'";
-                eof_array[3] = "'\0'";
-                eof_array[4] = "'\a'";
-                eof_array[5] = "'\b'";
-                eof_array[6] = "'\f'";
-                eof_array[7] = "'\r'";
-                eof_array[8] = "'\t'";
-                eof_array[9] = "'\v'";
+                string[] eof_array = new string[13];
+                eof_array[0] = @"'\'";
+                eof_array[1] = @"'\\''";
+                eof_array[2] = @"'\'";
+                eof_array[3] = @"'\0'";
+                eof_array[4] = @"'\a'";
+                eof_array[5] = @"'\b'";
+                eof_array[6] = @"'\f'";
+                eof_array[7] = @"'\r'";
+                eof_array[8] = @"'\t'";
+                eof_array[9] = @"'\v'";
                 eof_array[10] = @"'\u";
                 eof_array[11] = @"'\U";
+                eof_array[12] = @"'\x";
                 return eof_array;
                
             }
@@ -65,44 +66,59 @@ namespace Comentario_literal_caracter_separador
         private static StringBuilder buscar_single_character = new StringBuilder();
         // busca somente comentario;
        
-        public static string identicadores(string posicao,string cadeia)
+        public static string identicadores(string posicao,string cadeia, int index)
         {
-            
+            int conta = 0;
+            char[] divitir_primeiro_numero;
+            char[] divitir_por_ultimo;
+            string resultado_primeiro = null;
+            string resultado_ultimo = null;
             string a = posicao_do_elemento(posicao);
-            string v = verificar_palavra(cadeia);
-            string u_minusculo = eof[10] + buscar_single_character.ToString() + "'";
-            string u_maisculo = eof[11] + buscar_single_character.ToString() + "'";
-            if (cadeia == u_minusculo|| cadeia==u_maisculo)
+            string u_minusculo = eof[10] + buscar_single_character.ToString().Trim() + "'";
+            string u_maisculo = eof[11] + buscar_single_character.ToString().Trim() + "'";
+            string x = eof[12] + buscar_single_character.ToString().Trim() + "'";
+            int espaço = cadeia.IndexOf("\r\n");
+            conta = conta + index;
+            if (espaço >= 0)
             {
-                try
-                    {
-
-                        Regex regex = new Regex(@"\d([0-9])");
-                        var buscar = regex.Match(cadeia);
-                        cadeia = null;
-                        while(buscar.Success == true)
-                        {
-                        cadeia = cadeia + buscar.Value.ToString();
-                        buscar = buscar.NextMatch();  
-                        }
-                    return cadeia;
-                }
-                    catch (Exception err)
-                    {
-                        MessageBox.Show(err.Message);
-                    }
-                    for (int i = 0; i < eof.Length; i++)
-                    {
-                        if (cadeia == eof[i])
-                        {
-                            cadeia = eof[i];
-
-                        }
-
-                    }
-                
+                var separar = cadeia.Replace("\r\n", string.Empty);
+                divitir_primeiro_numero = separar.ToString().Take(separar.Length /2 ).ToArray();
+                divitir_por_ultimo = separar.ToString().Skip(separar.Length / 2).ToArray();
+                resultado_primeiro =  Index.remover_r_n(divitir_primeiro_numero);
+                resultado_ultimo = Index.remover_r_n(divitir_por_ultimo);
             }
             
+            if (cadeia == u_minusculo|| cadeia==u_maisculo)
+            {
+                buscar_single_character.Clear();
+                return Index.validar(cadeia, posicao);
+            }
+            else if(u_maisculo ==resultado_primeiro|| u_minusculo==resultado_primeiro)
+            {
+                buscar_single_character.Clear();
+                return Index.validar(resultado_primeiro, posicao);
+            }
+            else if(u_maisculo == resultado_ultimo || u_minusculo ==resultado_ultimo)
+            {
+                buscar_single_character.Clear();
+                return Index.validar(resultado_ultimo, posicao);
+            }
+           else if(cadeia == x)
+            {
+                return Index.validar(x, posicao);
+            }
+            else
+            {
+                for (int i = 0; i < eof.Length; i++)
+                {
+                    if (cadeia == eof[i].ToString())
+                    {
+                        cadeia = eof[i];
+                        return cadeia;
+                    }
+
+                }
+            }
 
             return null;
         }
@@ -117,17 +133,12 @@ namespace Comentario_literal_caracter_separador
                     return posicao;
                 }
             }
+            
 
             return null;
         }
-        public static string verificar_palavra(string veriifica)
-        {
-            if(veriifica == "'")
-            {
-                return veriifica;
-            }
-            return null;
-        }
+        
+        
     }
    
 }
