@@ -42,7 +42,7 @@ namespace Comentario_literal_caracter_separador
         {
             get
             {
-                string[] eof_array = new string[13];
+                string[] eof_array = new string[10];
                 eof_array[0] = @"'\'";
                 eof_array[1] = @"'\\''";
                 eof_array[2] = @"'\'";
@@ -53,9 +53,6 @@ namespace Comentario_literal_caracter_separador
                 eof_array[7] = @"'\r'";
                 eof_array[8] = @"'\t'";
                 eof_array[9] = @"'\v'";
-                eof_array[10] = @"'\u";
-                eof_array[11] = @"'\U";
-                eof_array[12] = @"'\x";
                 return eof_array;
                
             }
@@ -69,9 +66,9 @@ namespace Comentario_literal_caracter_separador
         public static string identicadores(string posicao,string cadeia, int index)
         {
             string a = posicao_do_elemento(posicao);
-            string u_minusculo = eof[10] + buscar_single_character.ToString() + "'";
-            string u_maisculo = eof[11] + buscar_single_character.ToString() + "'";
-            string x = eof[12] + buscar_single_character.ToString() + "'";
+            string u_minusculo = @"'\u" + buscar_single_character.ToString() + "'";
+            string u_maisculo = @"'\U" + buscar_single_character.ToString() + "'";
+            string x = @"'\x" + buscar_single_character.ToString() + "'";
             if (cadeia == u_minusculo|| cadeia==u_maisculo)
             {
                 buscar_single_character.Clear();

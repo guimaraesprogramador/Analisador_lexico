@@ -18,7 +18,7 @@ namespace Comentario_literal_caracter_separador
             List<string> retorno = new List<string>();
             builder = new StringBuilder();
             string demiliar = "";
-            string remover = texto.Replace("\r\n", string.Empty);
+            string remover = texto;
             for (int i = 0; i < remover.Length; i++)
             {
                 builder.Append(remover[i]);

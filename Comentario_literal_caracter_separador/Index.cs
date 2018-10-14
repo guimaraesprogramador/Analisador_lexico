@@ -56,21 +56,37 @@ namespace Comentario_literal_caracter_separador
             }
             return null;
         }
-        /*public static string verificar_e_um_texto_comum(string campo)
+        public static string verificar_e_um_texto_comum(string campo, List<string> lista)
         {
-            switch (campo)
+            if (campo.ToString() == "//")
             {
-                case "/":
-                    return campo;
-                case "*":
-                    return campo;
-                case "//":
-                    return "comentario";
-                case "/*":
-                    return campo;
+                lista.Add("é comentario");
+                Comentario_fonte.builder = Comentario_fonte.builder.Clear();
+                return campo.ToString();
             }
-            return campo;
-        }*/
+            else if (campo.ToString() == "/**/")
+            {
+                lista.Add("é comentario");
+                Comentario_fonte.builder = Comentario_fonte.builder.Clear();
+                return campo.ToString();
+            }
+
+            else if (campo.ToString() == @"'\u") return @"'\u";
+            else if (campo.ToString() == @"'\U") return @"'\U";
+            else if (campo.ToString() == @"'\x") return @"'\x";
+            else if (campo.ToString() == "'") return campo.ToString();
+            else if (campo.ToString() == "'\\") return campo.ToString();
+            else if (campo.ToString() == "/") return campo.ToString();
+            else if (campo.ToString() == "*") return campo.ToString();
+            else if (campo.ToString() == "*/") return campo.ToString();
+            else
+            {
+                int aspas_simples = campo.LastIndexOf("'") >=0 || campo.IndexOf("'")>=0?aspas_simples =0:-1;
+                if (aspas_simples == 0) return "palavra comum";
+                if (campo == "") return null;
+                else return null;
+            } 
+        }
     }
 
 }

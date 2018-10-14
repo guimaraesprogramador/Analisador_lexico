@@ -30,45 +30,26 @@ namespace Comentario_literal_caracter_separador
         }
         public static string buscar_token(string conca,string palavra, List<string> retorno, int i)
         {
-            string letra = palavra == "\r\n"||palavra == "\r" || palavra == "\n" || palavra == "*/"|| 
-                string.IsNullOrWhiteSpace(palavra)==true ? letra = null : letra =palavra;
-           //letra = Index.verificar_e_um_texto_comum(letra);
-            switch (letra)
+            string letra = conca== "\r\n"||conca == "\r" || conca == "\n"||
+                string.IsNullOrWhiteSpace(conca)==true ? letra = "" : letra =palavra;
+            string verifica = Index.verificar_e_um_texto_comum(letra, retorno);
+            if (verifica == null)
             {
-                case "//":
-                    
-                    //string[] barra_simple_dupla = Index.indice(letra, i);
-                    retorno.Add("e "+letra);
-                    builder = builder.Clear();
-                    break;
-                case "/*":
-
-                    //string[] barra_simple_dupla_final = Index.indice(letra, i);
-                    //retorno.Add("e " + letra);
-                    builder = builder.Clear();
-                    break;
-                case "/**":
-                    //string[] barra_simples_dupla = Index.indice(letra, i);
-                    //retorno.Add("e " + letra);
-                    builder = builder.Clear();
-                    break;
-                default:
-                    if(letra != null)
-                    {
-                        //erro de comentario
-                       
-                          string erro_mentados = Token.identicadores(letra,palavra, i);
-                            string resultado = erro_mentados != "erro metadado"&& erro_mentados ==letra ? resultado = erro_mentados : resultado = null;
-                        if (resultado != null) {
-                            string[] literal_carater = Index.indice(resultado, i);
-                            retorno.Add(literal_carater[0] + literal_carater[1] + " valor " + literal_carater[2]);
-                            Form1.linha = Form1.linha + 1;
-                            builder =  builder.Clear();
-                        }
-                    }
-                  
-                    break;
+                builder = builder.Clear();
             }
+            else
+            {
+                string erro_mentados = Token.identicadores(letra, palavra, i);
+                string resultado = erro_mentados != "erro metadado" && erro_mentados == letra ? resultado = erro_mentados : resultado = null;
+                if (resultado != null)
+                {
+                    string[] literal_carater = Index.indice(resultado, i);
+                    retorno.Add(literal_carater[0] + literal_carater[1] + " valor " + literal_carater[2]);
+                    Form1.linha = Form1.linha + 1;
+                    builder = builder.Clear();
+                }
+            }
+            
             return letra;
         }
     }
