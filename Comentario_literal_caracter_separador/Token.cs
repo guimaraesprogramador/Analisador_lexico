@@ -68,43 +68,18 @@ namespace Comentario_literal_caracter_separador
        
         public static string identicadores(string posicao,string cadeia, int index)
         {
-            char[] divitir_primeiro_numero;
-            char[] divitir_por_ultimo;
-            string resultado_primeiro = null;
-            string resultado_ultimo = null;
             string a = posicao_do_elemento(posicao);
-            string u_minusculo = eof[10] + buscar_single_character.ToString().Trim() + "'";
-            string u_maisculo = eof[11] + buscar_single_character.ToString().Trim() + "'";
-            string x = eof[12] + buscar_single_character.ToString().Trim() + "'";
-            int espaço = cadeia.IndexOf("\r\n");
-            
-            if (espaço >= 0)
-            {
-                var separar = cadeia.Replace("\r\n", string.Empty);
-                
-                divitir_primeiro_numero = separar.ToString().Take(separar.Length /Form1.linha ).ToArray();
-                divitir_por_ultimo = separar.ToString().Skip(separar.Length / Form1.linha).ToArray();
-                resultado_primeiro =  Index.remover_r_n(divitir_primeiro_numero);
-                resultado_ultimo = Index.remover_r_n(divitir_por_ultimo);
-            }
-            
+            string u_minusculo = eof[10] + buscar_single_character.ToString() + "'";
+            string u_maisculo = eof[11] + buscar_single_character.ToString() + "'";
+            string x = eof[12] + buscar_single_character.ToString() + "'";
             if (cadeia == u_minusculo|| cadeia==u_maisculo)
             {
                 buscar_single_character.Clear();
                 return Index.validar(cadeia, posicao);
             }
-            else if(u_maisculo ==resultado_primeiro|| u_minusculo==resultado_primeiro)
-            {
-                buscar_single_character.Clear();
-                return Index.validar(resultado_primeiro, posicao);
-            }
-            else if(u_maisculo == resultado_ultimo || u_minusculo ==resultado_ultimo)
-            {
-                buscar_single_character.Clear();
-                return Index.validar(resultado_ultimo, posicao);
-            }
            else if(cadeia == x)
             {
+                buscar_single_character.Clear();
                 return Index.validar(x, posicao);
             }
             else

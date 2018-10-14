@@ -16,7 +16,7 @@ namespace Comentario_literal_caracter_separador
         {
            
             List<string> retorno = new List<string>();
-             builder = new StringBuilder();
+            builder = new StringBuilder();
             string demiliar = "";
             string remover = texto.Replace("\r\n", string.Empty);
             for (int i = 0; i < remover.Length; i++)
@@ -25,15 +25,16 @@ namespace Comentario_literal_caracter_separador
                 demiliar = builder.ToString();
                 if (char.IsLetter(remover[i]))
                 {
-                    demiliar =  Token.identicadores(demiliar[i].ToString(), demiliar, i);
+                    demiliar = Identificador.buscar_token(remover[i].ToString(), demiliar, retorno, i);
+                    //demiliar =  Token.identicadores(remover[i].ToString(), demiliar, i);
                 }
                 else if ( char.IsDigit(remover[i]))
                 {
-                  demiliar =   Token.identicadores(demiliar[i].ToString(), demiliar, i);
+                  demiliar =   Token.identicadores(remover[i].ToString(), demiliar, i);
                 }
                 else if(!char.IsDigit(remover[i])&& !char.IsLetter(texto[i]))
                 {
-                  demiliar =   Identificador.buscar_token(demiliar[i].ToString(), demiliar, retorno, i);
+                  demiliar =   Identificador.buscar_token(remover[i].ToString(), demiliar, retorno, i);
                 }
             }
 

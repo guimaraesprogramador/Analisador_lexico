@@ -17,18 +17,10 @@ namespace Comentario_literal_caracter_separador
             string[] erro =  { "erro" };
             List<string> linha_posicao = new List<string>();
             array_lista[0] = " posicao " +localizado.ToString();
-            Regex linha = new Regex("[A-F0-9]");
-            var buscar_linha = linha.Match(texto);
-
-           if (buscar_linha.Success)
-            {
-                array_lista[1] = "linha " + buscar_linha.Index.ToString();
-                array_lista[2] = buscar_linha.Value.ToString(); 
-                buscar_linha = buscar_linha.NextMatch();
-            }
-          
             
-           
+            array_lista[1] = " linha " + Convert.ToString(Form1.linha - 1);
+            array_lista[2] = texto;
+            
             return array_lista;
         }
       public static string remover_r_n(char[] separador)
@@ -64,6 +56,21 @@ namespace Comentario_literal_caracter_separador
             }
             return null;
         }
+        /*public static string verificar_e_um_texto_comum(string campo)
+        {
+            switch (campo)
+            {
+                case "/":
+                    return campo;
+                case "*":
+                    return campo;
+                case "//":
+                    return "comentario";
+                case "/*":
+                    return campo;
+            }
+            return campo;
+        }*/
     }
 
 }

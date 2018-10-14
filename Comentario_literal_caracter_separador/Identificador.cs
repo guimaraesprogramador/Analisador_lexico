@@ -32,23 +32,25 @@ namespace Comentario_literal_caracter_separador
         {
             string letra = palavra == "\r\n"||palavra == "\r" || palavra == "\n" || palavra == "*/"|| 
                 string.IsNullOrWhiteSpace(palavra)==true ? letra = null : letra =palavra;
+           //letra = Index.verificar_e_um_texto_comum(letra);
             switch (letra)
             {
                 case "//":
                     
-                    string[] barra_simple_dupla = Index.indice(letra, i);
-                    retorno.Add("é comentario");
-                    
+                    //string[] barra_simple_dupla = Index.indice(letra, i);
+                    retorno.Add("e "+letra);
+                    builder = builder.Clear();
                     break;
                 case "/*":
 
                     //string[] barra_simple_dupla_final = Index.indice(letra, i);
-                    retorno.Add("é comentario");
-                    
+                    //retorno.Add("e " + letra);
+                    builder = builder.Clear();
                     break;
                 case "/**":
-                    string[] barra_simples_dupla = Index.indice(letra, i);
-                    retorno.Add("é comentario");
+                    //string[] barra_simples_dupla = Index.indice(letra, i);
+                    //retorno.Add("e " + letra);
+                    builder = builder.Clear();
                     break;
                 default:
                     if(letra != null)
@@ -59,11 +61,10 @@ namespace Comentario_literal_caracter_separador
                             string resultado = erro_mentados != "erro metadado"&& erro_mentados ==letra ? resultado = erro_mentados : resultado = null;
                         if (resultado != null) {
                             string[] literal_carater = Index.indice(resultado, i);
-                            retorno.Add(resultado + " " + literal_carater[0] + literal_carater[1] + "valor " + literal_carater[2]);
-                         
+                            retorno.Add(literal_carater[0] + literal_carater[1] + " valor " + literal_carater[2]);
+                            Form1.linha = Form1.linha + 1;
+                            builder =  builder.Clear();
                         }
-                        var proxima = builder.
-    
                     }
                   
                     break;
