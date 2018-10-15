@@ -33,10 +33,21 @@ namespace Comentario_literal_caracter_separador
             string letra = conca== "\r\n"||conca == "\r" || conca == "\n"||
                 string.IsNullOrWhiteSpace(conca)==true ? letra = "" : letra =palavra;
             string verifica = Index.verificar_e_um_texto_comum(letra, retorno);
+            
             if (verifica == null)
             {
+
                 builder = builder.Clear();
             }
+            
+            Index.erros(letra);
+            String lista_palavra = Index.listar_palavra_reservada();
+            if (lista_palavra != null)
+            {
+                retorno.Add(lista_palavra);
+
+            }
+
             else
             {
                 string erro_mentados = Token.identicadores(letra, palavra, i);
@@ -48,6 +59,9 @@ namespace Comentario_literal_caracter_separador
                     Form1.linha = Form1.linha + 1;
                     builder = builder.Clear();
                 }
+
+
+
             }
             
             return letra;

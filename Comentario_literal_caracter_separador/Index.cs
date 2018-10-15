@@ -56,36 +56,84 @@ namespace Comentario_literal_caracter_separador
             }
             return null;
         }
+       public static StringBuilder StringBuilder = new StringBuilder();
         public static string verificar_e_um_texto_comum(string campo, List<string> lista)
         {
             if (campo.ToString() == "//")
             {
                 lista.Add("é comentario");
-                Comentario_fonte.builder = Comentario_fonte.builder.Clear();
-                return campo.ToString();
+                return null;
             }
             else if (campo.ToString() == "/**/")
             {
                 lista.Add("é comentario");
-                Comentario_fonte.builder = Comentario_fonte.builder.Clear();
-                return campo.ToString();
+                return null;
             }
 
             else if (campo.ToString() == @"'\u") return @"'\u";
             else if (campo.ToString() == @"'\U") return @"'\U";
             else if (campo.ToString() == @"'\x") return @"'\x";
-            else if (campo.ToString() == "'") return campo.ToString();
-            else if (campo.ToString() == "'\\") return campo.ToString();
-            else if (campo.ToString() == "/") return campo.ToString();
-            else if (campo.ToString() == "*") return campo.ToString();
-            else if (campo.ToString() == "*/") return campo.ToString();
-            else
+            else if (campo == "*" || campo == "/") return campo;
+            return null;
+        }
+        public static string erros(string palavra)
+        {
+            if (char.IsLetter(palavra[0])) return null;
+                if (palavra == "/*" )
+                {
+                int ultima_caracter_Especial = Comentario_fonte.texto.LastIndexOf("*");
+                   
+                    //nao tem outro caractar
+                     if (ultima_caracter_Especial == 1)
+                    {
+                        StringBuilder.Append(palavra);
+                        return null;
+                    }
+
+                }
+            if (palavra == "*") StringBuilder.Append("/*" + palavra);
+                if (palavra == "'" )
+                {
+                    int ultima_caracter_Especial2 = Comentario_fonte.texto.LastIndexOf("'");
+                    //nao tem outro caractar
+                    if (ultima_caracter_Especial2 == 1)
+                    {
+                        
+                            StringBuilder.Append(palavra);
+                            return null;
+                    }
+
+                }
+
+            return palavra;
+        }
+        public static string listar_palavra_reservada()
+        {
+            string palavra = null;
+            if(StringBuilder.ToString()!= null)
             {
-                int aspas_simples = campo.LastIndexOf("'") >=0 || campo.IndexOf("'")>=0?aspas_simples =0:-1;
-                if (aspas_simples == 0) return "palavra comum";
-                if (campo == "") return null;
-                else return null;
-            } 
+                switch (StringBuilder.ToString())
+                {
+                    case "/*":
+                        palavra = "erro de bloco";
+                        StringBuilder.Clear();
+                        break;
+                    case "/**":
+                        palavra = "erro de bloco";
+                        StringBuilder.Clear();
+                        break;
+                    case "'":
+                        palavra = "Caracter não terminado até E.O.F";
+                        StringBuilder.Clear();
+                        break;
+                    case "'/":
+                        palavra = "erro";
+                        StringBuilder.Clear();
+                        break;
+                }
+               
+            }
+            return palavra;
         }
     }
 
