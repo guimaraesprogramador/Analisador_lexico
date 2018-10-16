@@ -53,23 +53,22 @@ namespace Comentario_literal_caracter_separador
             }
             if (palavra == "'")
             {
-                int ultima_caracter_Especial2 = Comentario_fonte.texto.Length == 1 ? 1 : 0;
+                int ultima_caracter_Especial2 = Comentario_fonte.texto.Length > 1 ? Comentario_fonte.texto.Length
+                    : 0;
                 //nao tem outro caractar
-                if (ultima_caracter_Especial2 == 1)
+                if (ultima_caracter_Especial2 == 0)
                 {
                     StringBuilder.Append(palavra);
                     return null;
                 }
-                if (ultima_caracter_Especial2 != 1)
+                else
                 {
-                    ultima_caracter_Especial2 = Comentario_fonte.texto.IndexOf(@"'\");
-                    //se nao encontra
-                    if (ultima_caracter_Especial2 == -1)
+                    if (palavra == "'\\") return palavra;
+                    else
                     {
                         StringBuilder.Append(palavra + "outros");
                         return null;
                     }
-
                 }
             }
 

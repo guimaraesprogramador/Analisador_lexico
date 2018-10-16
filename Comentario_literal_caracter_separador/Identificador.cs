@@ -41,8 +41,10 @@ namespace Comentario_literal_caracter_separador
                 if (lista_palavra != null)
                 {
                     retorno.Add(lista_palavra);
+                    Form1.linha = Form1.linha - 1;
                     builder = builder.Clear();
                 }
+              
 
             }
             //certo
@@ -52,7 +54,7 @@ namespace Comentario_literal_caracter_separador
                 {
                     string[] literal_carater = Index.indice(resultado, i);
                     retorno.Add(literal_carater[0] + literal_carater[1] + " valor " + literal_carater[2]);
-                    Form1.linha = Form1.linha + 1;
+                Form1.linha = Form1.linha - 1;
                     builder = builder.Clear();
                 }
             return letra;

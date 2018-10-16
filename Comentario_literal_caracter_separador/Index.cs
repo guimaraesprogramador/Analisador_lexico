@@ -17,8 +17,15 @@ namespace Comentario_literal_caracter_separador
             string[] erro =  { "erro" };
             List<string> linha_posicao = new List<string>();
             array_lista[0] = " posicao " +localizado.ToString();
+            if(Form1.linha == 1)
+            {
+                array_lista[1] = " linha " + 1;
+            }
+            else
+            {
+                array_lista[1] = " linha " + Form1.linha;
+            }
             
-            array_lista[1] = " linha " + Convert.ToString(Form1.linha - 1);
             array_lista[2] = texto;
             
             return array_lista;
