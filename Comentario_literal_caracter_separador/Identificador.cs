@@ -32,25 +32,21 @@ namespace Comentario_literal_caracter_separador
         {
             string letra = conca== "\r\n"||conca == "\r" || conca == "\n"||
                 string.IsNullOrWhiteSpace(conca)==true ? letra = "" : letra =palavra;
-            string verifica = Index.verificar_e_um_texto_comum(letra, retorno);
-            
-            if (verifica == null)
+            string verifica = Erros_lexema.verificar_e_um_texto_comum(letra, retorno);
+            if (verifica == null) builder = builder.Clear();
+            if (verifica == "palavra reservada")
             {
-
-                builder = builder.Clear();
-            }
-            
-            Index.erros(letra);
-            String lista_palavra = Index.listar_palavra_reservada();
-            if (lista_palavra != null)
-            {
-                retorno.Add(lista_palavra);
+                Erros_lexema.erros(letra);
+                String lista_palavra = Erros_lexema.listar_palavra_reservada();
+                if (lista_palavra != null)
+                {
+                    retorno.Add(lista_palavra);
+                    builder = builder.Clear();
+                }
 
             }
-
-            else
-            {
-                string erro_mentados = Token.identicadores(letra, palavra, i);
+            //certo
+            string erro_mentados = Token.identicadores(letra, palavra, i);
                 string resultado = erro_mentados != "erro metadado" && erro_mentados == letra ? resultado = erro_mentados : resultado = null;
                 if (resultado != null)
                 {
@@ -59,11 +55,6 @@ namespace Comentario_literal_caracter_separador
                     Form1.linha = Form1.linha + 1;
                     builder = builder.Clear();
                 }
-
-
-
-            }
-            
             return letra;
         }
     }
