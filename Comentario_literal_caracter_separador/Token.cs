@@ -43,16 +43,16 @@ namespace Comentario_literal_caracter_separador
             get
             {
                 string[] eof_array = new string[10];
-                eof_array[0] = @"'\'";
-                eof_array[1] = @"'\\''";
-                eof_array[2] = @"'\'";
-                eof_array[3] = @"'\0'";
-                eof_array[4] = @"'\a'";
-                eof_array[5] = @"'\b'";
-                eof_array[6] = @"'\f'";
-                eof_array[7] = @"'\r'";
-                eof_array[8] = @"'\t'";
-                eof_array[9] = @"'\v'";
+                eof_array[0] = @"'\";
+                eof_array[1] = @"'\\";
+                eof_array[2] = @"'\"+'"';
+                eof_array[3] = @"'\0";
+                eof_array[4] = @"'\a";
+                eof_array[5] = @"'\b";
+                eof_array[6] = @"'\f";
+                eof_array[7] = @"'\r";
+                eof_array[8] = @"'\t";
+                eof_array[9] = @"'\v";
                 return eof_array;
                
             }

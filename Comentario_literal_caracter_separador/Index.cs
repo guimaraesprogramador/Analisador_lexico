@@ -57,15 +57,31 @@ namespace Comentario_literal_caracter_separador
         }
         public static string lexema(string qual)
         {
+            //valido
             for (int i = 0; i < Token.eof.Length; i++)
                 {
-                    if (qual == Token.eof[i].ToString())
+                    if (qual == Token.eof[i].ToString()+"'")
                     {
-                        qual = Token.eof[i];
+                        qual = Token.eof[i]+"'";
                         return qual;
                     }
 
                 }
+            
+            return null;
+        }
+        public static string erro_lexema(string invalido)
+        {
+            //invalido
+            for (int erro = 0; erro < Token.eof.Length; erro++)
+            {
+                //se tem '
+                if (invalido == Token.eof[erro].ToString())
+                {
+                    invalido = Token.eof[erro];
+                    return invalido;
+                }
+            }
             return null;
         }
        

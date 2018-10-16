@@ -50,7 +50,7 @@ namespace Comentario_literal_caracter_separador
             }
             //certo
             string erro_mentados = Token.identicadores(letra, palavra, i);
-                string resultado = erro_mentados != "erro metadado" && erro_mentados == letra ? resultado = erro_mentados : resultado = null;
+                string resultado = erro_mentados == letra ? resultado = erro_mentados : resultado = null;
                 if (resultado != null)
                 {
                     string[] literal_carater = Index.indice(resultado, i);

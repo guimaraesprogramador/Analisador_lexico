@@ -28,7 +28,7 @@ namespace Comentario_literal_caracter_separador
             }
             else if (campo == "*" || campo == "/" || campo == "'" 
                 || campo =="/*"|| campo=="/**"||
-                campo == @"'\") return "palavra reservada";
+                campo == @"'\"|| Index.erro_lexema(campo) != null) return "palavra reservada";
             return "esperado palavra";
         }
         public static string erros(string palavra)
@@ -58,7 +58,7 @@ namespace Comentario_literal_caracter_separador
             {
                 int ultima_caracter_Especial2 = Comentario_fonte.texto.Length > 1&&
                     palavra.Length >1 && palavra != @"'\u"&& palavra != @"\U" &&
-                    palavra != @"\x" && palavra != @"'\"
+                    palavra != @"\x" && palavra != @"'\" && Index.lexema(palavra)!=null
                     ? Comentario_fonte.texto.Length
                     : 0;
                 //nao tem outro caractar
@@ -86,16 +86,16 @@ namespace Comentario_literal_caracter_separador
             }
             // erro de ' no final do lexema separador
             //em teste
-            /*if(palavra == @"'\" || Comentario_fonte.texto.Length > 2)
+            if(palavra != @"'\" || Comentario_fonte.texto.Length >2)
             {
-                int aspas_simples_barra = Comentario_fonte.texto.LastIndexOf("'") == -1 && 
-                    Index.lexema(palavra) == null? -1 : 0;
-                if (aspas_simples_barra == -1)
+                int aspas_simples_barra = Index.erro_lexema(palavra) != null&&
+                    Comentario_fonte.texto.LastIndexOf(" ")==-1? -1 : 0;
+                if (aspas_simples_barra == -1&&palavra !="'\\")
                 {
                     StringBuilder.Append("erro de metadados");
                     return null;
                 }
-            }*/
+            }
 
 
             return palavra;
