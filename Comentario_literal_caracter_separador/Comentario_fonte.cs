@@ -59,6 +59,7 @@ namespace Comentario_literal_caracter_separador
 
              }*/
             builder.Clear();
+            Index.linha = 1;
             return retorno;
             
         }

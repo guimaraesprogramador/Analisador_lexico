@@ -11,23 +11,15 @@ namespace Comentario_literal_caracter_separador
 {
    public class Index
     {
+        public static int linha = 1;
        public static string[] indice(string texto, int localizado)
         {
             string[] array_lista = new string[3];
             string[] erro =  { "erro" };
             List<string> linha_posicao = new List<string>();
             array_lista[0] = " posicao " +localizado.ToString();
-            if(Form1.linha == 1)
-            {
-                array_lista[1] = " linha " + 1;
-            }
-            else
-            {
-                array_lista[1] = " linha " + Form1.linha;
-            }
-            
+                array_lista[1] = " linha " + linha;
             array_lista[2] = texto;
-            
             return array_lista;
         }
       public static string remover_r_n(char[] separador)
@@ -61,6 +53,19 @@ namespace Comentario_literal_caracter_separador
             {
                 MessageBox.Show(err.Message);
             }
+            return null;
+        }
+        public static string lexema(string qual)
+        {
+            for (int i = 0; i < Token.eof.Length; i++)
+                {
+                    if (qual == Token.eof[i].ToString())
+                    {
+                        qual = Token.eof[i];
+                        return qual;
+                    }
+
+                }
             return null;
         }
        

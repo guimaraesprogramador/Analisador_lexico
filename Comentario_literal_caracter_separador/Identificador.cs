@@ -32,6 +32,7 @@ namespace Comentario_literal_caracter_separador
         {
             string letra = conca== "\r\n"||conca == "\r" || conca == "\n"||
                 string.IsNullOrWhiteSpace(conca)==true ? letra = "" : letra =palavra;
+            if (conca == "\n") Index.linha++;
             string verifica = Erros_lexema.verificar_e_um_texto_comum(letra, retorno);
             if (verifica == null) builder = builder.Clear();
             if (verifica == "palavra reservada")
@@ -41,7 +42,7 @@ namespace Comentario_literal_caracter_separador
                 if (lista_palavra != null)
                 {
                     retorno.Add(lista_palavra);
-                    Form1.linha = Form1.linha - 1;
+                    
                     builder = builder.Clear();
                 }
               
@@ -54,7 +55,7 @@ namespace Comentario_literal_caracter_separador
                 {
                     string[] literal_carater = Index.indice(resultado, i);
                     retorno.Add(literal_carater[0] + literal_carater[1] + " valor " + literal_carater[2]);
-                Form1.linha = Form1.linha - 1;
+                
                     builder = builder.Clear();
                 }
             return letra;

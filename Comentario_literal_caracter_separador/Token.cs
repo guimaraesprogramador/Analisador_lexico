@@ -81,14 +81,11 @@ namespace Comentario_literal_caracter_separador
             }
             else
             {
-                for (int i = 0; i < eof.Length; i++)
+                string procurar = Index.lexema(cadeia);
+                if (procurar!= null)
                 {
-                    if (cadeia == eof[i].ToString())
-                    {
-                        cadeia = eof[i];
-                        return cadeia;
-                    }
-
+                    buscar_single_character.Clear();
+                    return procurar;
                 }
             }
 
