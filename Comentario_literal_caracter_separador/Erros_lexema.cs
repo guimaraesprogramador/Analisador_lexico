@@ -29,7 +29,8 @@ namespace Comentario_literal_caracter_separador
             else if (campo == "*" || campo == "/" || campo == "'" 
                 || campo =="/*"|| campo=="/**"||
                 campo == @"'\"|| Index.erro_lexema(campo) != null
-              ||  Index.lexema(campo)!= null) return "palavra reservada";
+              ||  Index.lexema(campo)!= null ||campo == @"'\u"
+|| campo==@"'\U"|| campo ==@"'\x") return "palavra reservada";
             return "esperado palavra";
         }
         public static string erros(string palavra)
@@ -60,11 +61,11 @@ namespace Comentario_literal_caracter_separador
 
             }
             // ' erro
-            if (palavra == "'")
+            if (palavra == "'"&& Comentario_fonte.texto.Length>1)
             {
                 int ultima_caracter_Especial2 = Comentario_fonte.texto.Length > 1&&
                      palavra != @"'\u"&& palavra != @"\U" &&
-                    palavra != @"\x" && palavra != @"'\" && Index.erro_lexema(palavra)!=null
+                    palavra != @"\x" && palavra != @"'\" && Index.erro_lexema(palavra)!= null
                     || Comentario_fonte.texto.IndexOf("'")>=1
                     ? Comentario_fonte.texto.Length
                     : 0;
@@ -76,13 +77,13 @@ namespace Comentario_literal_caracter_separador
                 }
             }
             //erro de Caracter não terminado até E.O.F"
-            if (palavra == "'" && Comentario_fonte.texto.Length== 1)
+             if (palavra == "'" && Comentario_fonte.texto.Length== 1)
             {
                 StringBuilder.Append(palavra);
                 return null;
             }
             // Erro de '\
-            if(palavra == @"'\"&& Comentario_fonte.texto[0]>2|| Index.erro_lexema(palavra) != null)
+            if(palavra == @"'\"&& Comentario_fonte.texto.Length==2)
             {
                     int procura_elemento = palavra.Length== 2 ? 1 : 0;
                 if (procura_elemento == 1)
@@ -92,21 +93,40 @@ namespace Comentario_literal_caracter_separador
                 }
             }
             // erro de ' no final do lexema separador
-            //em teste
-            if(palavra == @"'\" &&Index.erro_lexema(palavra) != null&& Comentario_fonte.texto.Length>3)
+             if(Index.erro_lexema(palavra) != null&& palavra !="'\\")
             {
-                int aspas_simples_barra  = Comentario_fonte.texto.Length > 1 &&
-                    Index.erro_lexema(palavra) != null||palavra == "'\\"
-                    ? Comentario_fonte.texto.Length
-                    : 0;
-                if (aspas_simples_barra !=0)
+                int aspas_simples = Comentario_fonte.texto.LastIndexOf("'");
+                if (aspas_simples == 0)
                 {
-                     StringBuilder.Append("erro de metadados");
+                    StringBuilder.Append("erro de metadados");
                     return null;
                 }
             }
-
-
+            // erro de \u 
+            if (@"'\u" ==palavra)
+            {
+                int pesquisar_ultima_aspas = Comentario_fonte.texto.LastIndexOf("'");
+                if(pesquisar_ultima_aspas == 0)
+                {
+                    StringBuilder.Append("erro");
+                    return null;
+                }
+            }
+            //erro de \U
+            if (@"'\U" == palavra)
+            {
+                int pesquisar_no_u_maisculo_aspas_simples = Comentario_fonte.texto.LastIndexOf("'");
+                if(pesquisar_no_u_maisculo_aspas_simples == 0)
+                {
+                    StringBuilder.Append("erro");
+                    return null;
+                }
+            }
+            // erro de \x
+            /*if (@"'\x" == palavra)
+            {
+                
+            }*/
             return palavra;
         }
         public static string listar_palavra_reservada()
@@ -138,6 +158,10 @@ namespace Comentario_literal_caracter_separador
                         break;
                     case "erro de metadados":
                         palavra = "erro de metadados";
+                        StringBuilder.Clear();
+                        break;
+                    case "erro":
+                        palavra = "erro";
                         StringBuilder.Clear();
                         break;
                 }

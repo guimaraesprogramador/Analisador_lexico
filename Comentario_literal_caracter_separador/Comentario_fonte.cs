@@ -37,27 +37,6 @@ namespace Comentario_literal_caracter_separador
                   demiliar =   Identificador.buscar_token(remover[i].ToString(), demiliar, retorno, i);
                 }
             }
-
-            //char[] cadeia = texto.ToArray();
-
-            /* for (int i = 0; i < cadeia.Length; i++)
-             {
-                 concatena = concatena + cadeia[i];
-                 if (char.IsLetter(cadeia[i]))
-                 {
-                     concatena = Token.identicadores(concatena);                    
-                 }
-                 if (char.IsDigit(cadeia[i]))
-                 {
-                     concatena = Token.identicadores(concatena);
-                 }
-                 else
-                 {
-                     concatena = Identificador.buscar_token(concatena, retorno, i);
-                 }
-
-
-             }*/
             builder.Clear();
             Index.linha = 1;
             return retorno;

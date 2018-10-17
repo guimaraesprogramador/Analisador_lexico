@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 namespace Comentario_literal_caracter_separador
 {
-    public class Token:Comentario_fonte
+    public class Token
     {
       public static string[] single_character
         {
@@ -60,7 +60,7 @@ namespace Comentario_literal_caracter_separador
                 eof = value;
             }
         }
-        private static StringBuilder buscar_single_character = new StringBuilder();
+        public static StringBuilder buscar_single_character = new StringBuilder();
         // busca somente comentario;
        
         public static string identicadores(string posicao,string cadeia, int index)
@@ -82,10 +82,17 @@ namespace Comentario_literal_caracter_separador
             else
             {
                 string procurar = Index.lexema(cadeia);
-                if (procurar!= null)
+                if (procurar != null)
                 {
                     buscar_single_character.Clear();
                     return procurar;
+                }
+                if (char.IsDigit(cadeia[0]))
+                {
+                    if (cadeia.IndexOf(cadeia[0]) == 0 ||
+                        cadeia.IndexOf(@"'\u") == -1 ||
+                        cadeia.IndexOf(@"\U") == -1 ||
+                        cadeia.IndexOf(@"\x") == -1) buscar_single_character.Clear();
                 }
             }
 
