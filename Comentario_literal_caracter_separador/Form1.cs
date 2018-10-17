@@ -55,21 +55,22 @@ namespace Comentario_literal_caracter_separador
                     case "erro lexico":
                         listBox3.Items.Add("erro lexico");
                         break;
-                    case "erro lexico e identicador":
-                        listBox3.Items.Add("erro lexico e identicador");
+                    case "é comentario":
+                        listBox4.Items.Add("é comentario");
                         break;
                     default:
-                        if (resposta[o] != "é comentario")
+                        if(resposta[o].ToString()=="erro"||resposta[o].ToString()== "erro de bloco"||
+                            resposta[o].ToString() == "Caracter não terminado até E.O.F"||
+                            resposta[o].ToString() == @"'\" + "outros"||
+                            resposta[o].ToString()== "erro de metadados"||
+                            resposta[o].ToString() == "'" + "outros")
                         {
-                            listBox1.Items.Add(resposta[o].ToString());
-                            //     textBox2.Text = Convert.ToString(Comentario_fonte.token);
-                            /*string item = Identificador.comentario_identifador(resposta[o]) != null? Identificador.comentario_identifador(resposta[o]) : null;
-                            if (item != null) listBox2.Items.Add(item);*/
+                            listBox3.Items.Add(resposta[o].ToString());
                         }
 
                         else
                         {
-                            listBox4.Items.Add(resposta[o].ToString());
+                            listBox1.Items.Add(resposta[o].ToString());
                         }
                        
                         break;

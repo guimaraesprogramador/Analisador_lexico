@@ -87,13 +87,7 @@ namespace Comentario_literal_caracter_separador
                     buscar_single_character.Clear();
                     return procurar;
                 }
-                if (char.IsDigit(cadeia[0]))
-                {
-                    if (cadeia.IndexOf(cadeia[0]) == 0 ||
-                        cadeia.IndexOf(@"'\u") == -1 ||
-                        cadeia.IndexOf(@"\U") == -1 ||
-                        cadeia.IndexOf(@"\x") == -1) buscar_single_character.Clear();
-                }
+                
             }
 
             return null;

@@ -39,14 +39,20 @@ namespace Comentario_literal_caracter_separador
         {
             try
             {
-
-                Regex regex = new Regex(@"[A-F0-9]");
-                var buscar = regex.Match(validacao);
-                validacao = null;
-                if (buscar.Success == true)
+                Regex rege2 = new Regex(@"(?<!\d)(?!0000)\d{4}(?!\d)");
+                var validar = rege2.Match(validacao);
+               
+                if (validar.Success == true)
                 {
-                    validacao = local;
+                    Regex regex = new Regex("[A-F0-9]");
+                    var buscar = regex.Match(validacao);
+                    validacao = null;
+                    if (buscar.Success == true)
+                    {
+                        validacao = local;
+                    }
                 }
+                
                 return validacao;
             }
             catch (Exception err)

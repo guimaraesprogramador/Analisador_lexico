@@ -11,12 +11,13 @@ namespace Comentario_literal_caracter_separador
         public static StringBuilder StringBuilder = new StringBuilder();
         public static string verificar_e_um_texto_comum(string campo, List<string> lista)
         {
+            if (campo == null) return null;
             if (campo.ToString() == "//")
             {
                 lista.Add("é comentario");
                 return "esperado palavra";
             }
-            else if (campo == "") return null;
+            
             else if (Char.IsLetter(campo[0]))
             {
                 return null;
@@ -57,6 +58,7 @@ namespace Comentario_literal_caracter_separador
                 if (barra_final == 0)
                 {
                     StringBuilder.Append(palavra);
+                    return null;
                 }
 
             }
@@ -65,7 +67,7 @@ namespace Comentario_literal_caracter_separador
             {
                 int ultima_caracter_Especial2 = Comentario_fonte.texto.Length > 1&&
                      palavra != @"'\u"&& palavra != @"\U" &&
-                    palavra != @"\x" && palavra != @"'\" && Index.erro_lexema(palavra)!= null
+                    palavra != @"\x" && palavra != @"'\" && Index.lexema(palavra)!= null
                     || Comentario_fonte.texto.IndexOf("'")>=1
                     ? Comentario_fonte.texto.Length
                     : 0;

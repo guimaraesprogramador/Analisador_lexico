@@ -17,24 +17,24 @@ namespace Comentario_literal_caracter_separador
            
             List<string> retorno = new List<string>();
             builder = new StringBuilder();
-            string demiliar = "";
-            string remover = texto;
-            for (int i = 0; i < remover.Length; i++)
+            string demiliar = null;
+            for (int i = 0; i < texto.Length; i++)
             {
-                builder.Append(remover[i]);
-                demiliar = builder.ToString();
-                if (char.IsLetter(remover[i]))
+                
+                demiliar =texto[i].ToString();
+                    builder.Append(demiliar);
+                if (char.IsLetter(texto[i]))
                 {
-                    demiliar = Identificador.buscar_token(remover[i].ToString(), demiliar, retorno, i);
+                    demiliar = Identificador.buscar_token(texto[i].ToString(), builder.ToString(), retorno, i);
                     //demiliar =  Token.identicadores(remover[i].ToString(), demiliar, i);
                 }
-                else if ( char.IsDigit(remover[i]))
+                else if ( char.IsDigit(texto[i]))
                 {
-                  demiliar =   Token.identicadores(remover[i].ToString(), demiliar, i);
+                  demiliar =   Token.identicadores(texto[i].ToString(), builder.ToString(), i);
                 }
-                else if(!char.IsDigit(remover[i])&& !char.IsLetter(texto[i]))
+                else if(!char.IsDigit(texto[i]) && !char.IsLetter(texto[i]))
                 {
-                  demiliar =   Identificador.buscar_token(remover[i].ToString(), demiliar, retorno, i);
+                  demiliar =   Identificador.buscar_token(texto[i].ToString(), builder.ToString(), retorno, i);
                 }
             }
             builder.Clear();
