@@ -21,6 +21,7 @@ namespace Comentario_literal_caracter_separador
             for (int i = 0; i < texto.Length; i++)
             {
                 char anterior = new char();
+                char proximo = new char();
                 char letra = texto[i];
                 //alterior
                 /*if (i > 0)
@@ -31,31 +32,30 @@ namespace Comentario_literal_caracter_separador
                    
                 }*/
                 
-                   anterior = texto[i];
-                
-               
+                anterior = letra;
+
                 //proximo palavra
                 if (i < texto.Length - 1)
                 {
-                   Erros_lexema.proximo = texto[i + 1];
+                   proximo = texto[i + 1];
                   
                 }
-                
+               
                 // se é letra
                 if (char.IsLetter(texto[i]))
                 {
-                    Identificador.buscar_token(anterior, Erros_lexema.proximo, retorno, i);
+                  Identificador.buscar_token(anterior, proximo, retorno, i);
 
                 }
                 // se é numero
                 else if ( char.IsDigit(texto[i]))
                 {
-                    Token.identicadores(anterior, Erros_lexema.proximo, i);
+                    Token.identicadores(anterior, proximo, i);
                 }
                 // se não é letra e numero
                 else if(!char.IsDigit(texto[i]) && !char.IsLetter(texto[i]))
                 {
-                   Identificador.buscar_token( anterior, Erros_lexema.proximo, retorno, i);
+                   Identificador.buscar_token( anterior, proximo, retorno, i);
                   
                 }
             }

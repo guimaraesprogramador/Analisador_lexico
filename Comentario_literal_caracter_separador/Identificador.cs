@@ -28,9 +28,9 @@ namespace Comentario_literal_caracter_separador
             else comentario = null;
             return comentario;
         }
-        public static string erro(char letra,int index)
+        public static string erro(char letra,char letra_em_sequencia,int index)
         {
-             Erros_lexema.erros(letra,index);
+             Erros_lexema.erros(letra,letra_em_sequencia,index);
 
             String lista_palavra = Erros_lexema.listar_palavra_reservada();
             if (lista_palavra != null)
@@ -42,16 +42,16 @@ namespace Comentario_literal_caracter_separador
             }
             return null;
         }
-        public static string buscar_token( char palavra, char concatenacao, List<string> retorno, int i)
+        public static char buscar_token( char palavra, char concatenacao, List<string> retorno, int i)
         {
             char letra =palavra;
             if (concatenacao == '\n') Index.linha++;
             string verifica = Erros_lexema.verificar_e_um_texto_comum(letra,concatenacao, retorno);
             if (verifica == "palavra reservada"|| verifica== null)
             {
-                string linhas = erro(letra, i);
+                string linhas = erro(letra,concatenacao, i);
               if (linhas != null) retorno.Add(linhas);
-                return letra.ToString();
+                return letra;
             }
             //certo
             string erro_mentados = Token.identicadores(letra, palavra, i);
@@ -63,7 +63,7 @@ namespace Comentario_literal_caracter_separador
                 
                     builder = builder.Clear();
                 }
-            return letra.ToString();
+            return letra;
         }
     }
 }

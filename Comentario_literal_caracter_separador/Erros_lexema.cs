@@ -35,7 +35,7 @@ namespace Comentario_literal_caracter_separador
                 concatena = null;
                 return "esperado palavra";
             }
-            if (concatena == "//")
+            else if (concatena == "//")
             {
                 lista.Add("é comentario");
                 concatena = null;
@@ -43,23 +43,17 @@ namespace Comentario_literal_caracter_separador
             }
             else if (campo.ToString() == "*" || campo.ToString() == "/" || campo.ToString() == "'"
                 || campo.ToString() == "/*" || campo.ToString() == "/**" ||
-                campo.ToString() == @"'\" || Index.erro_lexema(campo.ToString()) != null
-              || Index.lexema(campo.ToString()) != null || campo.ToString() == @"'\u"
-|| campo.ToString() == @"'\U" || campo.ToString() == @"'\x") return "palavra reservada";
+                campo.ToString() == @"'\" || Index.erro_lexema(proximo.ToString()) != null
+              || Index.lexema(proximo.ToString()) != null || proximo == 'u'
+|| proximo == 'U' || proximo == 'x') return "palavra reservada";
             return "esperado palavra";
         }
-        public static char proximo = new char();
-        public static string erros(char palavra, int o)
+        public static string erros(char palavra, char proxima_letra ,int o)
         {
            
-            /*if(o < Comentario_fonte.texto.Length -1)
-            {
-                proximo = Comentario_fonte.texto[o + 1];
-            }*/
-            // /*
             if (palavra.ToString() == "/*")
             {
-                int ultima_caracter_Especial = proximo;
+                int ultima_caracter_Especial = palavra;
 
                 //nao tem outro caractar
                 if (ultima_caracter_Especial == 1)
@@ -72,7 +66,7 @@ namespace Comentario_literal_caracter_separador
             // erro /**
             if (palavra.ToString() == "/**")
             {
-                int barra_final = proximo;
+                int barra_final = palavra;
                 // erro /**
                 if (barra_final == 0)
                 {
@@ -82,7 +76,7 @@ namespace Comentario_literal_caracter_separador
 
             }
             // ' erro
-            if (palavra.ToString() == "'"&& Comentario_fonte.texto.Length>1)
+            if (palavra ==Convert.ToChar("'") && proxima_letra.ToString() != "'" && Comentario_fonte.texto.Length>1)
             {
                int ultima_caracter_Especial2 = Comentario_fonte.texto.Length > 1 &&
                      palavra.ToString() != @"'\u" && palavra.ToString() != @"\U" &&
@@ -115,7 +109,7 @@ namespace Comentario_literal_caracter_separador
             // erro de ' no final do lexema separador
              if(Index.erro_lexema(palavra.ToString()) != null&& palavra.ToString() != "'\\")
             {
-                int aspas_simpes = proximo;
+                int aspas_simpes = palavra;
                 if(aspas_simpes == 0)
                 {
                     StringBuilder.Append("erro de metadados");
@@ -124,26 +118,28 @@ namespace Comentario_literal_caracter_separador
               
                 
             }
+            
             // erro de \u 
-            if (@"'\u" == palavra.ToString())
+            if (@"'\u" == unicodio(palavra, proxima_letra))
             {
-                int pesquisar_ultima_aspas = proximo;
-                if(pesquisar_ultima_aspas == 0)
+                var pesquisar_ultima_aspas = Comentario_fonte.texto.Length - 1;
+                int ultima_aspas = pesquisar_ultima_aspas.ToString().LastIndexOf("'");
+                if(ultima_aspas == -1)
                 {
                     StringBuilder.Append("erro");
                     return null;
                 }
             }
             //erro de \U
-            if (@"'\U" == palavra.ToString())
+           /* if (@"'\U" == unicodio(palavra))
             {
-                int pesquisar_no_u_maisculo_aspas_simples = proximo;
+                int pesquisar_no_u_maisculo_aspas_simples = palavra;
                 if(pesquisar_no_u_maisculo_aspas_simples == 0)
                 {
                     StringBuilder.Append("erro");
                     return null;
                 }
-            }
+            }*/
             // erro de \x
             /*if (@"'\x" == palavra)
             {
@@ -189,6 +185,23 @@ namespace Comentario_literal_caracter_separador
                 }
             }
             return palavra;
+        }
+        private static string concatena_unico = null;
+        public static string unicodio(char palavra_anterior, char proxima_l)
+        {
+            if(palavra_anterior.ToString() == "'"&& proxima_l.ToString()==@"\")
+            {
+                concatena_unico = palavra_anterior.ToString() +proxima_l;
+                return concatena_unico;
+            }
+            
+            else if(proxima_l == 'u')
+            {
+                concatena_unico = concatena_unico + proxima_l;
+                return concatena_unico;
+            }
+            
+            return null;
         }
     }
 }
