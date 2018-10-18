@@ -42,7 +42,7 @@ namespace Comentario_literal_caracter_separador
         {
             get
             {
-                string[] eof_array = new string[10];
+                string[] eof_array = new string[11];
                 eof_array[0] = @"'\";
                 eof_array[1] = @"'\\";
                 eof_array[2] = @"'\"+'"';
@@ -53,11 +53,31 @@ namespace Comentario_literal_caracter_separador
                 eof_array[7] = @"'\r";
                 eof_array[8] = @"'\t";
                 eof_array[9] = @"'\v";
+                eof_array[10] = @"n";
                 return eof_array;
                
             }
            set {
                 eof = value;
+            }
+        }
+        public static string[] eof_invalido
+        {
+            get
+            {
+                string[] eof_array = new string[11];
+                eof_array[0] = @"\";
+                eof_array[1] = @"\\";
+                eof_array[2] = @"\" + '"';
+                eof_array[3] = @"0";
+                eof_array[4] = @"a";
+                eof_array[5] = @"b";
+                eof_array[6] = @"f";
+                eof_array[7] = @"r";
+                eof_array[8] = @"t";
+                eof_array[9] = @"v";
+                eof_array[10] = @"n";
+                return eof_array;
             }
         }
         public static StringBuilder buscar_single_character = new StringBuilder();
@@ -89,17 +109,24 @@ namespace Comentario_literal_caracter_separador
             }
             else
             {
-                string procurar = Index.lexema(cadeia.ToString());
-                if (procurar != null)
+                Index.lexema_unicodi(posicao, cadeia);
+                if (unir_palavra != null)
                 {
-                    buscar_single_character.Clear();
-                    return procurar;
+                    string procurar = Index.lexema(unir_palavra);
+                    if (procurar != null)
+                    {
+                        buscar_single_character.Clear();
+                        unir_palavra = null;
+                        return procurar;
+                    }
                 }
+                
                 
             }
 
             return null;
         }
+       public static string unir_palavra = null;
         public static string posicao_do_elemento(char posicao)
         {
             

@@ -76,11 +76,14 @@ namespace Comentario_literal_caracter_separador
 
             }
             // ' erro
-            if (palavra ==Convert.ToChar("'") && proxima_letra.ToString() != "'" && Comentario_fonte.texto.Length>1)
+            if (palavra.ToString() ==@"'"&& proxima_letra != '\\' && proxima_letra != '\0' 
+&& Comentario_fonte.texto.Length>1&& proxima_letra != '\r'&& proxima_letra !='\n')
             {
-               int ultima_caracter_Especial2 = Comentario_fonte.texto.Length > 1 &&
-                     palavra.ToString() != @"'\u" && palavra.ToString() != @"\U" &&
-                    palavra.ToString() != @"\x" && palavra.ToString() != @"'\" 
+               string lexema_proxima = Comentario_fonte.texto[o].ToString();
+                int ultima_caracter_Especial2 = Comentario_fonte.texto.Length > 1 &&
+                      palavra.ToString() != @"'\u" && palavra.ToString() != @"\U" &&
+                     palavra.ToString() != @"\x" && palavra.ToString() != @"'\" &&
+                     Index.erro_lexema(lexema_proxima.ToString())== null
                     ? Comentario_fonte.texto.Length
                     : 0;
                 //nao tem outro caractar

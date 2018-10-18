@@ -44,6 +44,7 @@ namespace Comentario_literal_caracter_separador
         }
         public static char buscar_token( char palavra, char concatenacao, List<string> retorno, int i)
         {
+            // palavra anterior
             char letra =palavra;
             if (concatenacao == '\n') Index.linha++;
             string verifica = Erros_lexema.verificar_e_um_texto_comum(letra,concatenacao, retorno);
@@ -51,14 +52,14 @@ namespace Comentario_literal_caracter_separador
             {
                 string linhas = erro(letra,concatenacao, i);
               if (linhas != null) retorno.Add(linhas);
-                return letra;
+                
             }
             //certo
-            string erro_mentados = Token.identicadores(letra, palavra, i);
-            string resultado = erro_mentados == letra.ToString() ? resultado = erro_mentados : resultado = null;
-                if (resultado != null)
+            //                                        anterior, proxima, index
+            string erro_mentados = Token.identicadores(letra,concatenacao, i);
+                if (erro_mentados != null)
                 {
-                    string[] literal_carater = Index.indice(resultado, i);
+                    string[] literal_carater = Index.indice(erro_mentados, i);
                     retorno.Add(literal_carater[0] + literal_carater[1] + " valor " + literal_carater[2]);
                 
                     builder = builder.Clear();

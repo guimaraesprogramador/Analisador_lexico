@@ -56,7 +56,8 @@ namespace Comentario_literal_caracter_separador
                 else if(!char.IsDigit(texto[i]) && !char.IsLetter(texto[i]))
                 {
                    Identificador.buscar_token( anterior, proximo, retorno, i);
-                  
+                    
+
                 }
             }
             builder.Clear();

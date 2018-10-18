@@ -77,16 +77,34 @@ namespace Comentario_literal_caracter_separador
         public static string erro_lexema(string invalido)
         {
             //invalido
-            for (int erro = 0; erro < Token.eof.Length; erro++)
+            for (int erro = 0; erro < Token.eof_invalido.Length; erro++)
             {
                 //se tem '
-                if (invalido == Token.eof[erro].ToString())
+                if (invalido == Token.eof_invalido[erro].ToString())
                 {
-                    invalido = Token.eof[erro];
+                    invalido = Token.eof_invalido[erro];
                     return invalido;
                 }
             }
             return null;
+        }
+        public static void lexema_unicodi(char ante,char depois)
+        {
+            // '                         e   \      
+            if (ante.ToString() == @"'" && depois == '\\')
+            {
+               Token.unir_palavra = ante.ToString() + depois;
+            }
+            //     \                      e   a      
+            if (ante.ToString() == "\\" && Index.erro_lexema(depois.ToString()) != null)
+            {
+                Token.unir_palavra = Token.unir_palavra + depois;
+            }
+            //    a                                         e       '
+            if (Index.erro_lexema(ante.ToString()) != null && depois.ToString() == "'")
+            {
+                Token.unir_palavra = Token.unir_palavra +depois;
+            }
         }
        
     }
