@@ -77,13 +77,14 @@ namespace Comentario_literal_caracter_separador
             }
             // ' erro
             if (palavra.ToString() ==@"'"&& proxima_letra != '\\' && proxima_letra != '\0' 
-&& Comentario_fonte.texto.Length>1&& proxima_letra != '\r'&& proxima_letra !='\n')
+&& Comentario_fonte.texto.Length>1)
             {
                string lexema_proxima = Comentario_fonte.texto[o].ToString();
                 int ultima_caracter_Especial2 = Comentario_fonte.texto.Length > 1 &&
                       palavra.ToString() != @"'\u" && palavra.ToString() != @"\U" &&
                      palavra.ToString() != @"\x" && palavra.ToString() != @"'\" &&
-                     Index.erro_lexema(lexema_proxima.ToString())== null
+                     Index.erro_lexema(lexema_proxima.ToString())== null &&
+                     proxima_letra != '\r' && proxima_letra != '\n'
                     ? Comentario_fonte.texto.Length
                     : 0;
                 //nao tem outro caractar
@@ -100,9 +101,9 @@ namespace Comentario_literal_caracter_separador
                 return null;
             }
             // Erro de '\
-            if(palavra.ToString() == @"'\")
+            if(proxima_letra == '\\')
             {
-                    int procura_elemento = palavra.ToString().Length== 2 ? 1 : 0;
+                    int procura_elemento = Comentario_fonte.texto.Length== 2 ? 1 : 0;
                 if (procura_elemento == 1)
                 {
                     StringBuilder.Append(palavra+ "outros");
