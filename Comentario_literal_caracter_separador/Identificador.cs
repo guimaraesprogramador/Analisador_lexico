@@ -28,9 +28,9 @@ namespace Comentario_literal_caracter_separador
             else comentario = null;
             return comentario;
         }
-        public static string erro(string letra)
+        public static string erro(char letra,int index)
         {
-             Erros_lexema.erros(letra);
+             Erros_lexema.erros(letra,index);
 
             String lista_palavra = Erros_lexema.listar_palavra_reservada();
             if (lista_palavra != null)
@@ -42,22 +42,20 @@ namespace Comentario_literal_caracter_separador
             }
             return null;
         }
-        public static string buscar_token(string conca,string palavra, List<string> retorno, int i)
+        public static string buscar_token( char palavra, char concatenacao, List<string> retorno, int i)
         {
-            string letra = conca== "\r\n"||conca == "\r" || conca == "\n"||
-                string.IsNullOrWhiteSpace(conca)==true ? letra =null : letra =palavra;
-            if (conca == "\n") Index.linha++;
-            string verifica = Erros_lexema.verificar_e_um_texto_comum(letra, retorno);
-            if (verifica == null) builder = builder.Clear();
-            if (verifica == "palavra reservada")
+            char letra =palavra;
+            if (concatenacao == '\n') Index.linha++;
+            string verifica = Erros_lexema.verificar_e_um_texto_comum(letra,concatenacao, retorno);
+            if (verifica == "palavra reservada"|| verifica== null)
             {
-                string linhas = erro(letra);
+                string linhas = erro(letra, i);
               if (linhas != null) retorno.Add(linhas);
-
+                return letra.ToString();
             }
             //certo
             string erro_mentados = Token.identicadores(letra, palavra, i);
-                string resultado = erro_mentados == letra ? resultado = erro_mentados : resultado = null;
+            string resultado = erro_mentados == letra.ToString() ? resultado = erro_mentados : resultado = null;
                 if (resultado != null)
                 {
                     string[] literal_carater = Index.indice(resultado, i);
@@ -65,7 +63,7 @@ namespace Comentario_literal_caracter_separador
                 
                     builder = builder.Clear();
                 }
-            return letra;
+            return letra.ToString();
         }
     }
 }

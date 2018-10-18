@@ -63,25 +63,33 @@ namespace Comentario_literal_caracter_separador
         public static StringBuilder buscar_single_character = new StringBuilder();
         // busca somente comentario;
        
-        public static string identicadores(string posicao,string cadeia, int index)
+        public static string identicadores(char posicao,char cadeia, int index)
         {
             string a = posicao_do_elemento(posicao);
             string u_minusculo = @"'\u" + buscar_single_character.ToString() + "'";
             string u_maisculo = @"'\U" + buscar_single_character.ToString() + "'";
             string x = @"'\x" + buscar_single_character.ToString() + "'";
-            if (cadeia == u_minusculo|| cadeia==u_maisculo)
+            if (cadeia.ToString() == u_minusculo|| cadeia.ToString() == u_maisculo)
             {
                 buscar_single_character.Clear();
-                return Index.validar(cadeia, posicao);
+                u_maisculo = null;
+                u_maisculo = null;
+                x = null;
+                Comentario_fonte.builder = Comentario_fonte.builder.Clear();
+                return Index.validar(cadeia.ToString(), posicao.ToString());
             }
-           else if(cadeia == x)
+           else if(cadeia.ToString() == x)
             {
                 buscar_single_character.Clear();
-                return Index.validar(x, posicao);
+                u_maisculo = null;
+                u_maisculo = null;
+                x = null;
+                Comentario_fonte.builder = Comentario_fonte.builder.Clear();
+                string palavras =  Index.validar(x, posicao.ToString());
             }
             else
             {
-                string procurar = Index.lexema(cadeia);
+                string procurar = Index.lexema(cadeia.ToString());
                 if (procurar != null)
                 {
                     buscar_single_character.Clear();
@@ -92,15 +100,15 @@ namespace Comentario_literal_caracter_separador
 
             return null;
         }
-        public static string posicao_do_elemento(string posicao)
+        public static string posicao_do_elemento(char posicao)
         {
             
             for (int i = 0; i < single_character.Length; i++)
             {
-                if(single_character[i] == posicao)
+                if(single_character[i] == posicao.ToString())
                 {
                     buscar_single_character.Append(posicao);
-                    return posicao;
+                    return posicao.ToString();
                 }
             }
             

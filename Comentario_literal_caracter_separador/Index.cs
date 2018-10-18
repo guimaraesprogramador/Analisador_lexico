@@ -46,14 +46,12 @@ namespace Comentario_literal_caracter_separador
                 {
                     Regex regex = new Regex("[A-F0-9]");
                     var buscar = regex.Match(validacao);
-                    validacao = null;
+                    
                     if (buscar.Success == true)
                     {
-                        validacao = local;
+                        return validacao;
                     }
                 }
-                
-                return validacao;
             }
             catch (Exception err)
             {

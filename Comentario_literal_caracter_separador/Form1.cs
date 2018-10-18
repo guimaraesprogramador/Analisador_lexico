@@ -26,7 +26,7 @@ namespace Comentario_literal_caracter_separador
         private void analisar_Click(object sender, EventArgs e)
         {
             ///linha = textBox1.Lines.Count();
-            Comentario_fonte.texto = textBox1.Text;
+            Comentario_fonte.texto = textBox1.Text.ToCharArray();
            List<string> resposta = fonte.main();
             analisador_lexico(resposta);
         }
