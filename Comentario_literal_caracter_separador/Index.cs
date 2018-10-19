@@ -96,14 +96,14 @@ namespace Comentario_literal_caracter_separador
                Token.unir_palavra = ante.ToString() + depois;
             }
             //     \                      e   a      
-            if (ante.ToString() == "\\" && Index.erro_lexema(depois.ToString()) != null)
+            else if (ante.ToString() == "\\" && Index.erro_lexema(depois.ToString()) != null)
             {
                 Token.unir_palavra = Token.unir_palavra + depois;
             }
             //    a                                         e       '
-            if (Index.erro_lexema(ante.ToString()) != null && depois.ToString() == "'")
+            else if (Index.erro_lexema(ante.ToString()) != null&& depois.ToString() == "'")
             {
-                Token.unir_palavra = Token.unir_palavra +depois;
+                Token.unir_palavra = Token.unir_palavra + depois;
             }
         }
        

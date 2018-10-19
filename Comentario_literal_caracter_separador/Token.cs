@@ -45,7 +45,7 @@ namespace Comentario_literal_caracter_separador
                 string[] eof_array = new string[11];
                 eof_array[0] = @"'\";
                 eof_array[1] = @"'\\";
-                eof_array[2] = @"'\"+'"';
+                eof_array[2] = @"'";
                 eof_array[3] = @"'\0";
                 eof_array[4] = @"'\a";
                 eof_array[5] = @"'\b";
@@ -68,7 +68,7 @@ namespace Comentario_literal_caracter_separador
                 string[] eof_array = new string[11];
                 eof_array[0] = @"\";
                 eof_array[1] = @"\\";
-                eof_array[2] = @"\" + '"';
+                eof_array[2] = @"'";
                 eof_array[3] = @"0";
                 eof_array[4] = @"a";
                 eof_array[5] = @"b";

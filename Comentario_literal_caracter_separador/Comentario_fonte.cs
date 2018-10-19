@@ -60,8 +60,9 @@ namespace Comentario_literal_caracter_separador
 
                 }
             }
-            builder.Clear();
+            Token.unir_palavra = null;
             Index.linha = 1;
+
             return retorno;
             
         }

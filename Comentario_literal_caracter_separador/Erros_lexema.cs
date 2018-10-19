@@ -98,7 +98,7 @@ namespace Comentario_literal_caracter_separador
             {
                 if (o>0)
                 {
-                    elemento = Comentario_fonte.texto[o];
+                    elemento = Comentario_fonte.texto[o-1];
                 }
                 if(elemento == palavra && palavra.ToString() == "'")
                 {
@@ -114,7 +114,7 @@ namespace Comentario_literal_caracter_separador
                 {
                     elemento = Comentario_fonte.texto[o];
                 }
-                if (o == 0) elemento = '\\';
+                if (o == 0) elemento = Comentario_fonte.texto[o];
                 if (elemento == proxima_letra)
                 {
                     StringBuilder.Append(palavra+ "outros");
