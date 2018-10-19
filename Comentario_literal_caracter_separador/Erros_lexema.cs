@@ -112,9 +112,9 @@ namespace Comentario_literal_caracter_separador
             {
                 if (o > 0)
                 {
-                    elemento = Comentario_fonte.texto[o];
+                    elemento = Comentario_fonte.texto[o-1];
                 }
-                if (o == 0) elemento = Comentario_fonte.texto[o];
+                if (o == 0) elemento = Comentario_fonte.texto[o+1];
                 if (elemento == proxima_letra)
                 {
                     StringBuilder.Append(palavra+ "outros");
@@ -201,7 +201,7 @@ namespace Comentario_literal_caracter_separador
             }
             return palavra;
         }
-        private static string concatena_unico = null;
+        public static string concatena_unico = null;
         public static string unicodio(char palavra_anterior, char proxima_l)
         {
             if(palavra_anterior.ToString() == "'"&& proxima_l.ToString()==@"\")
@@ -211,6 +211,15 @@ namespace Comentario_literal_caracter_separador
             }
             
             else if(proxima_l == 'u')
+            {
+                concatena_unico = concatena_unico + proxima_l;
+                return concatena_unico;
+            }
+            else if(proxima_l == 'U'){
+                concatena_unico = concatena_unico + proxima_l;
+                return concatena_unico;
+            }
+            else if(proxima_l == 'x')
             {
                 concatena_unico = concatena_unico + proxima_l;
                 return concatena_unico;

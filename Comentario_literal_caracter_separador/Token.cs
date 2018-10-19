@@ -45,7 +45,7 @@ namespace Comentario_literal_caracter_separador
                 string[] eof_array = new string[11];
                 eof_array[0] = @"'\";
                 eof_array[1] = @"'\\";
-                eof_array[2] = @"'";
+                eof_array[2] = @"'\"+'"';
                 eof_array[3] = @"'\0";
                 eof_array[4] = @"'\a";
                 eof_array[5] = @"'\b";
@@ -68,7 +68,7 @@ namespace Comentario_literal_caracter_separador
                 string[] eof_array = new string[11];
                 eof_array[0] = @"\";
                 eof_array[1] = @"\\";
-                eof_array[2] = @"'";
+                eof_array[2] = Convert.ToString('"');
                 eof_array[3] = @"0";
                 eof_array[4] = @"a";
                 eof_array[5] = @"b";
@@ -80,27 +80,27 @@ namespace Comentario_literal_caracter_separador
                 return eof_array;
             }
         }
-        public static StringBuilder buscar_single_character = new StringBuilder();
-        // busca somente comentario;
        
         public static string identicadores(char posicao,char cadeia, int index)
         {
-            string a = posicao_do_elemento(posicao);
-            string u_minusculo = @"'\u" + buscar_single_character.ToString() + "'";
-            string u_maisculo = @"'\U" + buscar_single_character.ToString() + "'";
-            string x = @"'\x" + buscar_single_character.ToString() + "'";
+            /* posicao_do_elemento(posicao);
+            barra(posicao, cadeia);
+            unic(cadeia);
+            string u_minusculo =  concatena_unico2+unir_palavra+concar+ "'";
+            string u_maisculo = concatena_unico2 +U+concar+ "'";
+            string x_palavra = concatena_unico2 + x +concar+ "'";
             if (cadeia.ToString() == u_minusculo|| cadeia.ToString() == u_maisculo)
             {
-                buscar_single_character.Clear();
+                
                 u_maisculo = null;
                 u_maisculo = null;
                 x = null;
                 Comentario_fonte.builder = Comentario_fonte.builder.Clear();
                 return Index.validar(cadeia.ToString(), posicao.ToString());
             }
-           else if(cadeia.ToString() == x)
+           else if(cadeia.ToString() == x_palavra)
             {
-                buscar_single_character.Clear();
+               
                 u_maisculo = null;
                 u_maisculo = null;
                 x = null;
@@ -108,25 +108,26 @@ namespace Comentario_literal_caracter_separador
                 string palavras =  Index.validar(x, posicao.ToString());
             }
             else
-            {
+            {*/
                 Index.lexema_unicodi(posicao, cadeia);
                 if (unir_palavra != null)
                 {
                     string procurar = Index.lexema(unir_palavra);
                     if (procurar != null)
                     {
-                        buscar_single_character.Clear();
+                        
                         unir_palavra = null;
                         return procurar;
                     }
                 }
                 
                 
-            }
+           // }
 
             return null;
         }
        public static string unir_palavra = null;
+        private static string concar = null;
         public static string posicao_do_elemento(char posicao)
         {
             
@@ -134,15 +135,42 @@ namespace Comentario_literal_caracter_separador
             {
                 if(single_character[i] == posicao.ToString())
                 {
-                    buscar_single_character.Append(posicao);
+                    concar = concar+posicao.ToString();
                     return posicao.ToString();
                 }
             }
-            
-
             return null;
         }
-        
+        private static string concatena_unico2 = null;
+        private static string uni_u = null;
+        public static void barra(char palavra_anterior, char proxima_letra)
+        {
+            if (palavra_anterior.ToString() == "'" && proxima_letra.ToString() == @"\")
+            {
+                concatena_unico2 = palavra_anterior.ToString() + proxima_letra;
+                
+            }
+            
+        }
+        private static string U = null;
+        private static string x = null;
+        public  static string unic(char proxima_u)
+        {
+            if(proxima_u == 'u')
+            {
+                uni_u = @"u";
+                return uni_u;
+            }
+            else if(proxima_u == 'U')
+            {
+                return U = "U";
+            }
+            else if(proxima_u == 'x')
+            {
+                return x = "x";
+            }
+            return null;
+        }
         
     }
    
