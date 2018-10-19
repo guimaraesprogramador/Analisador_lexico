@@ -53,7 +53,7 @@ namespace Comentario_literal_caracter_separador
                 eof_array[7] = @"'\r";
                 eof_array[8] = @"'\t";
                 eof_array[9] = @"'\v";
-                eof_array[10] = @"n";
+                eof_array[10] = @"'\n";
                 return eof_array;
                
             }
