@@ -13,6 +13,7 @@ namespace Comentario_literal_caracter_separador
         {
             get
             {
+
                 string[] arrays = new string[16];
                 arrays[0] = "0";
                 arrays[1] = "1";
